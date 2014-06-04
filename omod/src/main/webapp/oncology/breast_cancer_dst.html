@@ -174,6 +174,7 @@
   @NX_STAGING_FOR_TNM@=fe262f06-f0be-49c0-b55b-82361b9b8145
   @ONCOLOGY_SURGERY_FACILITY@=1e1a2f81-ef1b-4eff-a1a4-457aa5ee8b32
   @SURGERY_PROCEDURE@=afbed187-03de-4fff-838a-66bbefb07993
+  @PATHOLOGY_REPORT_INSTITUTION@=2c077745-437b-4e5a-9b7f-d896632340ba
   
 </macros>
         
@@ -1924,16 +1925,16 @@ lymph node metastases.</li>
 				<td><obs id="regimenTimingNeoadjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />
-				</td>
-				<td><obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" /></td>
-				<td><obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
-						answerLabel="Palliative" /></td>
+						answerLabel="Palliative" />
+				</td>
+				<td></td>
+				<td></td>
 			</tr>
 			
 			<tr>
@@ -2008,16 +2009,16 @@ lymph node metastases.</li>
 				<td><obs id="regimenTimingNeoadjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />
-				</td>
-				<td><obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" /></td>
-				<td><obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
-						answerLabel="Palliative" /></td>
+						answerLabel="Palliative" />
+				</td>
+				<td></td>
+				<td></td>
 			</tr>
 			
 			<tr>
@@ -2094,16 +2095,16 @@ lymph node metastases.</li>
 				<td><obs id="regimenTimingNeoadjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />
-				</td>
-				<td><obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" /></td>
-				<td><obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
-						answerLabel="Palliative" /></td>
+						answerLabel="Palliative" />
+				</td>
+				<td></td>
+				<td></td>
 			</tr>
 			
 			<tr>
@@ -2180,16 +2181,16 @@ lymph node metastases.</li>
 				<td><obs id="regimenTimingNeoadjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />
-				</td>
-				<td><obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" /></td>
-				<td><obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
-						answerLabel="Palliative" /></td>
+						answerLabel="Palliative" />
+				</td>
+				<td></td>
+				<td></td>
 			</tr>
 			
 			<tr>
@@ -2261,6 +2262,7 @@ lymph node metastases.</li>
 						conceptId="$@ONCOLOGY_SURGERY_FACILITY@" answerConceptId="2b472c6b-a0d4-44b1-bb2f-3d44289a19e5" answerLabel="CHUB" /><br/>
 						<obs id="surgeryFacilityObsOther"
 						conceptId="$@ONCOLOGY_SURGERY_FACILITY@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other: " />
+						<obs id="siteOfSurgeryOTHERTextObs" conceptId="13c825f8-615a-429d-b813-ef9bdf8830ea" />
 						
 				</td>
 				<td></td>
@@ -2302,17 +2304,18 @@ lymph node metastases.</li>
 				<td>
 						
 						<obs id="institutionsPathologyObsBWH"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="6c87ddb0-f8e9-4115-98cc-5e71903f2c04" answerLabel="BWH " />
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="6c87ddb0-f8e9-4115-98cc-5e71903f2c04" answerLabel="BWH " />
 						<obs id="institutionsPathologyObsButaro"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="682754d6-cff2-4f2e-90a3-ea3b1e7fa230" answerLabel="Butaro " />
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="682754d6-cff2-4f2e-90a3-ea3b1e7fa230" answerLabel="Butaro " />
 						<obs id="institutionsPathologyObsKFH"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="55acdf7c-5027-4f01-90a2-ab9745f97dd3" answerLabel="KFH " />
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="55acdf7c-5027-4f01-90a2-ab9745f97dd3" answerLabel="KFH " />
 						<obs id="institutionsPathologyObsCHUK"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="68222ccb-71ee-418e-a4a4-b924b4e80108" answerLabel="CHUK " />
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="68222ccb-71ee-418e-a4a4-b924b4e80108" answerLabel="CHUK " />
 						<obs id="institutionsPathologyObsCHUB"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="2b472c6b-a0d4-44b1-bb2f-3d44289a19e5" answerLabel="CHUB " /><br/>
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="2b472c6b-a0d4-44b1-bb2f-3d44289a19e5" answerLabel="CHUB " /><br/>
 						<obs id="institutionsPathologyObsOther"
-						conceptId="$@LOCATION_OF_PATHOLOGY@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other " />
+						conceptId="$@PATHOLOGY_REPORT_INSTITUTION@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other: " />
+						<obs id="siteOfPathologyReportOTHERTextObs" conceptId="dcca298c-67d2-4968-84dc-1d792eb7f7c5" />
 						
 				</td>
 				<td></td>
@@ -2332,8 +2335,12 @@ lymph node metastases.</li>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Surgery Performed:</td>
-				<td colspan="3"><obs id="surgeryTypeObs"
-						conceptId="$@SURGERY_TYPE@" labelText="" /></td>
+				<td colspan="3">
+						<obs id="surgeryTypeObsModifiedRadical"
+						conceptId="$@SURGERY_TYPE@" answerConceptId="39e80b62-254e-46aa-aa9a-1fa92c90d6ab" answerLabel="Modified Radical Mastectomy WITH Axillary Lymph Node Dissection " /><br/>
+						<obs id="surgeryTypeObsModifiedRadical"
+						conceptId="$@SURGERY_TYPE@" answerConceptId="4eeeb806-b306-407e-a46f-19eafd59f71b" answerLabel="Other:" />						
+						</td>
 			</tr>
 			<tr>
 				<td>Pathologic N Stage* (if surgical pathology is adequate): pN:</td>
@@ -2352,9 +2359,12 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Facility</td>
-				<td><obs id="radiationFacilityObs"
-						conceptId="$@PLANNED_RADIATION_FACILITY@"
-						defaultValue="ceac8227-23ec-4f51-9dab-6ed3886151aa" labelText="" />
+				<td>						
+						<obs id="radiationFacilityObs"
+						conceptId="$@PLANNED_RADIATION_FACILITY@" answerConceptId="ceac8227-23ec-4f51-9dab-6ed3886151aa" answerLabel="Mulago" />&#160;&#160;&#160;&#160;
+						<obs id="radiationFacilityObs"
+						conceptId="$@PLANNED_RADIATION_FACILITY@" answerConceptId="5e3e2ad0-781c-4b1c-94c7-f5c64cd8b249" answerLabel="Other:" />
+						<obs id="siteOfRadiationOTHERTextObs" conceptId="5e3e2ad0-781c-4b1c-94c7-f5c64cd8b249" />
 				</td>
 				<td></td>
 				<td></td>
