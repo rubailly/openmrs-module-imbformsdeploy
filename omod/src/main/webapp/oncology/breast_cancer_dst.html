@@ -175,6 +175,10 @@
   @ONCOLOGY_SURGERY_FACILITY@=1e1a2f81-ef1b-4eff-a1a4-457aa5ee8b32
   @SURGERY_PROCEDURE@=afbed187-03de-4fff-838a-66bbefb07993
   @PATHOLOGY_REPORT_INSTITUTION@=2c077745-437b-4e5a-9b7f-d896632340ba
+  @SURGERY_PERFORMED@=893ebbae-cbe8-4ea1-9906-16dfb6620947
+  @PERFORMED_SURGERY_CONSTRUCT@=54743dc8-6dd0-44c3-9f97-f2d96255d18e
+  @OPERATIVE_REPROT_FACILITY@=1b727a0a-ec58-4360-bee3-bcf771a9404b
+  @OPERATIVE_REPORT_CONSTRUCT@=cb7278c9-6631-4a32-b4d7-378e24b2df93
   
 </macros>
         
@@ -2284,6 +2288,7 @@ lymph node metastases.</li>
 						conceptId="$@SURGERY_TYPE@" answerConceptId="39e80b62-254e-46aa-aa9a-1fa92c90d6ab" answerLabel="Modified Radical Mastectomy WITH Axillary Lymph Node Dissection " /><br/>
 						<obs id="surgeryTypeObsOther"
 						conceptId="$@SURGERY_TYPE@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other: " />
+						<obs id="SurgeryTypeOTHERTextObs" conceptId="4eeeb806-b306-407e-a46f-19eafd59f71b" />
 				</td>
 				<td></td>
 				<td></td>
@@ -2324,30 +2329,39 @@ lymph node metastases.</li>
 			<tr class="spaceUnder">
 				<td colspan="4"><b>Notes from Operative Report/Consultation with Surgeon:</b></td>
 			</tr>
+			<obsgroup groupingConceptId="$@PERFORMED_SURGERY_CONSTRUCT@">
 			<tr class="spaceUnder">
+			<obsgroup groupingConceptId="$@OPERATIVE_REPORT_CONSTRUCT@">
 				<td>Date of Surgery:<obs id="surgeryDateObs"
 						conceptId="$@DATE_OF_SURGERY@" labelText="" /></td>
 				<td>Institution:<obs id="institutionsSurgeryObs"
-						conceptId="$@ONCOLOGY_SURGERY_FACILITY@" labelText="" /></td>
+						conceptId="$@OPERATIVE_REPROT_FACILITY@" answerConceptId="682754d6-cff2-4f2e-90a3-ea3b1e7fa230" answerLabel="Butaro " />
+						<obs id="institutionsSurgeryObs"
+						conceptId="$@OPERATIVE_REPROT_FACILITY@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other: " />
+						<obs id="siteOfOperativeReportOTHERTextObs" conceptId="a8e5e461-7432-4ff5-a78a-472cceb77c23" />
+						</td>
 				<td></td>
 				<td>Procedure:<obs id="surgeryProcedureObs"
 						conceptId="$@SURGERY_PROCEDURE@" labelText="" /></td>
+						</obsgroup>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Surgery Performed:</td>
 				<td colspan="3">
 						<obs id="surgeryTypeObsModifiedRadical"
-						conceptId="$@SURGERY_TYPE@" answerConceptId="39e80b62-254e-46aa-aa9a-1fa92c90d6ab" answerLabel="Modified Radical Mastectomy WITH Axillary Lymph Node Dissection " /><br/>
+						conceptId="$@SURGERY_PERFORMED@" answerConceptId="39e80b62-254e-46aa-aa9a-1fa92c90d6ab" answerLabel="Modified Radical Mastectomy WITH Axillary Lymph Node Dissection " /><br/>
 						<obs id="surgeryTypeObsModifiedRadical"
-						conceptId="$@SURGERY_TYPE@" answerConceptId="4eeeb806-b306-407e-a46f-19eafd59f71b" answerLabel="Other:" />						
+						conceptId="$@SURGERY_PERFORMED@" answerConceptId="4eeeb806-b306-407e-a46f-19eafd59f71b" answerLabel="Other:" />	
+						<obs id="surgeryPerformedOTHERTextObs" conceptId="ecb42d79-3fbc-4d7d-b8d8-cc7b8a1b0114" />					
 						</td>
 			</tr>
 			<tr>
 				<td>Pathologic N Stage* (if surgical pathology is adequate): pN:</td>
-				<td></td>
+				<td><obs id="pathologicNStageTextObs" conceptId="3c0f3fcb-67b1-405e-916f-e4902e347f96" /></td>
 				<td></td>
 				<td></td>
 			</tr>
+			</obsgroup>
 		</TBODY>
 		</obsgroup>
 	</table>
