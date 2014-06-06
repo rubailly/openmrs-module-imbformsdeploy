@@ -846,7 +846,7 @@ if(jQuery){
 			<td style="border-right: 1px solid white;"><b>Inshuti Mu
 					Buzima <br />PIH Rwanda</b></td>
 			<td align="right">Oncology Program / Programme d'oncologie<br />
-				<h5>Diagnosis – Staging – Treatment Plan</h5></td>
+				<h5>Breast Cancer Diagnosis – Staging – Treatment Plan</h5></td>
 		</tr>
 	</table>
 	<br />
@@ -888,83 +888,22 @@ if(jQuery){
 	<br />
 	<table>
 		<tr>
-			<th colspan="3">Diagnosis</th>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">FINAL DIAGNOSIS</td>
-			<td colspan="2" class="values"><span id="finalDiagnosis"></span>
-			</td>
+			<th colspan="3">DISEASE WORK-UP</th>
 		</tr>
 	</table>
-	<table id="breast">
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Right breast mass</td>
-			<td class="values"><span id="rightBreastMass"></span></td>
-			<td class="values">Size: <span id="rightBreastMassSize1"></span>x<span
-				id="rightBreastMassSize2"> </span> <span>|</span> Mobility:<span
-				id="rightBreastMassMobility"></span></td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Left breast mass</td>
-			<td class="values"><span id="leftBreastMass"></span>
-			</td>
-			<td class="values">Size: <span id="leftBreastMassSize1"></span>x<span
-				id="leftBreastMassSize2"> </span> <span>|</span> Mobility:<span
-				id="leftBreastMassMobility"></span></td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Skin changes</td>
-			<td colspan="2" class="values"><span id="diagnosisSkinChanges"></span>
-			</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Lymphadenopathy</td>
-			<td colspan="2" class="values"><span
-				id="diagnosisLymphadenopathy"></span></td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-
-			<td class="lables">Comments</td>
-			<td colspan="2" class="values"><span id="diagnosisComments"></span>
-			</td>
-		</tr>
-		<tr bgcolor="#D9D9D9" class="diagnosisPrintArea">
-			<td colspan="3">Staging</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">TNM Pathologic Staging*</td>
-			<td colspan="2" class="values">T: <span id="stageTNMT"></span>
-				N: <span id="stageTNMN"></span> M:<span id="stageTNMM"></span></td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Overall Stage*</td>
-			<td colspan="2" class="values"><span id="breastStageOS"></span>
-			</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Treatment Group</td>
-			<td colspan="2" class="values"><span id="breastStageCS"></span>
-			</td>
-		</tr>
-	</table>
-	
-		<br />
 	<table id="pathology">
-		<tr class="diagnosisPrintArea">
-			<th colspan="3">PATHOLOGY</th>
-		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Pathology completed</td>
 			<td colspan="2" class="values"><span id="pathologyCompleted"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Date</td>
+			<td class="lables">Pathology report date</td>
 			<td colspan="2" class="values"><span id="pathologyDate"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Site of Pathology</td>
+			<td class="lables">Institution issuing pathology report</td>
 			<td colspan="2" class="values"><span id="pathologySite"></span>
 			</td>
 		</tr>
@@ -996,6 +935,67 @@ if(jQuery){
 		<tr class="diagnosisPrintArea" id="imagingStudies">
 			<td colspan="3" class="lables">Imaging Studies</td>
 		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Imaging Assessment &#38; Findings</td>
+			<td colspan="2" class="values"><span id="breastImagingAssessment"></span>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<table>
+		<tr>
+			<th colspan="3">FINAL DIAGNOSIS &#38; STAGING</th>
+		</tr>
+	</table>
+	<table id="breast">
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Right breast mass</td>
+			<td class="values"><span id="rightBreastMass"></span></td>
+			<td class="values">Size: <span id="rightBreastMassSize1"></span>x<span
+				id="rightBreastMassSize2"> </span> <span>|</span> Mobility:<span
+				id="rightBreastMassMobility"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Left breast mass</td>
+			<td class="values"><span id="leftBreastMass"></span>
+			</td>
+			<td class="values">Size: <span id="leftBreastMassSize1"></span>x<span
+				id="leftBreastMassSize2"> </span> <span>|</span> Mobility:<span
+				id="leftBreastMassMobility"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Skin changes</td>
+			<td colspan="2" class="values"><span id="diagnosisSkinChanges"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Lymphadenopathy</td>
+			<td colspan="2" class="values"><span id="diagnosisLymphadenopathy"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Notes</td>
+			<td colspan="2" class="values"><span id="diagnosisComments"></span>
+			</td>
+		</tr>
+		<tr bgcolor="#D9D9D9" class="diagnosisPrintArea">
+			<td colspan="3">Confirmed Disease Stage</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">TNM Pathologic Staging*</td>
+			<td colspan="2" class="values">T: <span id="stageTNMT"></span>
+				N: <span id="stageTNMN"></span> M:<span id="stageTNMM"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Overall Stage*</td>
+			<td colspan="2" class="values"><span id="breastStageOS"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Treatment Group</td>
+			<td colspan="2" class="values"><span id="breastStageCS"></span>
+			</td>
+		</tr>
 	</table>
 	<br />
 	<table id="treatmentPlan">
@@ -1003,9 +1003,166 @@ if(jQuery){
 			<th colspan="3">Treatment Plan</th>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Intent</td>
+			<td class="lables">Treatment Intent</td>
 			<td colspan="2" class="values"><span id="treatmentIntent"></span>
 			</td>
+		</tr>
+	</table>
+	<br/>
+	
+		<table id="chemotherapyTreatmentPlan1">
+		<tr class="diagnosisPrintArea">
+			<th colspan="3">Chemotherapy</th>
+		</tr>
+
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Type</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType1"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Timing</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming1"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Cycles</td>
+			<td colspan="2" class="values"><span id="chemotherapyCycles1"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned first cycle</td>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle1"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned regimen end</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd1"></span>
+				</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Planned changes to standard regimen</td>
+			<td colspan="2" class="values"><span
+				id="chemotherapyStandardRegimen1"></span></td>
+		</tr>
+	</table>
+	
+	<table id="chemotherapyTreatmentPlan2">
+		<tr class="diagnosisPrintArea">
+			<th colspan="3">Chemotherapy</th>
+		</tr>
+
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Type</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType2"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Timing</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming2"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Cycles</td>
+			<td colspan="2" class="values"><span id="chemotherapyCycles2"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned first cycle</td>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle2"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned regimen end</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd2"></span>
+				</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Planned changes to standard regimen</td>
+			<td colspan="2" class="values"><span
+				id="chemotherapyStandardRegimen2"></span></td>
+		</tr>
+	</table>
+	
+	<table id="chemotherapyTreatmentPlan3">
+		<tr class="diagnosisPrintArea">
+			<th colspan="3">Chemotherapy</th>
+		</tr>
+
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Type</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType3"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Timing</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming3"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Cycles</td>
+			<td colspan="2" class="values"><span id="chemotherapyCycles3"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned first cycle</td>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle3"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned regimen end</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd3"></span>
+				</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Planned changes to standard regimen</td>
+			<td colspan="2" class="values"><span
+				id="chemotherapyStandardRegimen3"></span></td>
+		</tr>
+	</table>
+	
+	<table id="chemotherapyTreatmentPlan4">
+		<tr class="diagnosisPrintArea">
+			<th colspan="3">Chemotherapy</th>
+		</tr>
+
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Type</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType4"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Regimen Timing</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming4"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Cycles</td>
+			<td colspan="2" class="values"><span id="chemotherapyCycles4"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned first cycle</td>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle4"></span>
+			</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+
+			<td class="lables">Planned regimen end</td>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd4"></span>
+				</td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Planned changes to standard regimen</td>
+			<td colspan="2" class="values"><span
+				id="chemotherapyStandardRegimen4"></span></td>
 		</tr>
 	</table>
 
@@ -1019,19 +1176,46 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Start Date</td>
+			<td class="lables">Planned date</td>
 			<td colspan="2" class="values"><span id="surgeryStartDate"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Type of Surgery</td>
+			<td class="lables">Surgery Type</td>
 			<td colspan="2" class="values"><span id="surgeryType"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Surgical Pathology report date</td>
+			<td colspan="2" class="values"><span id="surgeryReportDate"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Institution issuing surgical pathology report</td>
+			<td colspan="2" class="values"><span id="surgeryReportInstitution"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<th colspan="3">Notes from Operative Report/Consultation with Surgeon:</th>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Date of Surgery</td>
+			<td colspan="2" class="values"><span id="surgeryOperativeReportDate"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Institution</td>
+			<td colspan="2" class="values"><span id="surgeryOperativeReportInstitution"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Surgery Performed</td>
+			<td colspan="2" class="values"><span id="surgeryPerformed"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea">
+			<td class="lables">Pathology N Stage</td>
+			<td colspan="2" class="values"><span id="surgeryPathologyNStage"></span></td>
 		</tr>
 	</table>
 
 	<table id="radiationTreatmentPlan">
 		<tr class="diagnosisPrintArea">
-			<th colspan="3">Radiationtherapy</th>
+			<th colspan="3">RADIATION THERAPY</th>
 		</tr>
 
 		<tr class="diagnosisPrintArea">
@@ -1040,46 +1224,30 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Start Date</td>
+			<td class="lables">Planned date</td>
 			<td colspan="2" class="values"><span id="radiationStartDate"></span>
 			</td>
 		</tr>
 	</table>
-
-	<table id="chemotherapyTreatmentPlan">
+	<br/>
+	<table id="signature">
+	
 		<tr class="diagnosisPrintArea">
-			<th colspan="3">Chemotherapy</th>
-		</tr>
-
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Regimen</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimen"></span>
+			<td class="lables">Specialists consulted on this case</td>
+			<td colspan="2" class="values"><span >Oncologist: </span> <span >Surgeon: </span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Cycles</td>
-			<td colspan="2" class="values"><span id="chemotherapyCycles"></span>
+			<td class="lables">Staging and treatment plan confirmed by:</td>
+			<td colspan="2" class="values"><span></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-
-			<td class="lables">Planned first cycle</td>
-			<td colspan="2" class="values"><span id="chemotherapyFirstCycle"></span>
+			<td colspan="3" class="values"><span>(Internist Name)</span><span>(Signature)</span><span>(dd)(mm)(yyy)</span>
 			</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-
-			<td class="lables">Planned regimen length</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd"></span>
-				</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Changes to standard regimen</td>
-			<td colspan="2" class="values"><span
-				id="chemotherapyStandardRegimen"></span></td>
 		</tr>
 	</table>
-
+	
 	<table class="selectedCancerStagingKeys">
 
 	</table>
@@ -1520,6 +1688,8 @@ if(jQuery){
 						answerConceptId="$@IPSALATERAL@"
 						answerLabel="ipsalateral: "/>
 						
+						<span class="checkboxGroup">
+						
 						<obs id="ipsalateralMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
@@ -1529,12 +1699,16 @@ if(jQuery){
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 				
 				<td colspan="2"><obs id="contralateralAxillary"
 						conceptId="$@AXILLARY_LEVEL-I-II@"
 						answerConceptId="$@CONTRALATERAL@"
 						answerLabel="contralateral: "/>
+						
+						<span class="checkboxGroup">
 						
 						<obs id="contralateralMobile"
 						conceptId="$@CONTRALATERAL@"
@@ -1545,6 +1719,8 @@ if(jQuery){
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 			</tr>
 			
@@ -1558,6 +1734,8 @@ if(jQuery){
 						answerConceptId="$@IPSALATERAL@"
 						answerLabel="ipsalateral: "/>
 						
+						<span class="checkboxGroup">
+												
 						<obs id="ipsalateralMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
@@ -1567,12 +1745,16 @@ if(jQuery){
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 				
 				<td colspan="2"><obs id="contralateralInfra"
 						conceptId="$@INFRACLAVICULAR_AXILLARY_LEVEL_III@"
 						answerConceptId="$@CONTRALATERAL@"
 						answerLabel="contralateral: "/>
+						
+						<span class="checkboxGroup">
 						
 						<obs id="contralateralMobile"
 						conceptId="$@CONTRALATERAL@"
@@ -1583,6 +1765,8 @@ if(jQuery){
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 			</tr>
 			
@@ -1596,6 +1780,8 @@ if(jQuery){
 						answerConceptId="$@IPSALATERAL@"
 						answerLabel="ipsalateral: "/>
 						
+						<span class="checkboxGroup">
+						
 						<obs id="ipsalateralMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
@@ -1605,12 +1791,16 @@ if(jQuery){
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 				
 				<td colspan="2"><obs id="contralateralSupraclavicular"
 						conceptId="$@SUPRACLAVICULAR_LEVEL@"
 						answerConceptId="$@CONTRALATERAL@"
 						answerLabel="contralateral: "/>
+						
+						<span class="checkboxGroup">
 						
 						<obs id="contralateralMobile"
 						conceptId="$@CONTRALATERAL@"
@@ -1621,6 +1811,8 @@ if(jQuery){
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 			</tr>
 			
@@ -1634,6 +1826,8 @@ if(jQuery){
 						answerConceptId="$@IPSALATERAL@"
 						answerLabel="ipsalateral: "/>
 						
+						<span class="checkboxGroup">
+						
 						<obs id="ipsalateralMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
@@ -1643,12 +1837,16 @@ if(jQuery){
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 				
 				<td colspan="2"><obs id="contralateralInternalMammary"
 						conceptId="$@INTERNAL_MAMMARY_LEVEL@"
 						answerConceptId="$@CONTRALATERAL@"
 						answerLabel="contralateral: "/>
+						
+						<span class="checkboxGroup">
 						
 						<obs id="contralateralMobile"
 						conceptId="$@CONTRALATERAL@"
@@ -1659,6 +1857,8 @@ if(jQuery){
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
+						
+						</span>
 				</td>
 			</tr>
 
