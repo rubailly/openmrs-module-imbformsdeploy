@@ -434,7 +434,6 @@ if(jQuery){
        ViewModeHandler.prototype = {
 
     		    handleHeadingSection: function(finalDiagnosis) { //handle heading section
-    		    	 setInnerHtml("finalDiagnosis", finalDiagnosis);
     		         setInnerHtml("date", getValueOfChildSpan('encounterDate'));
     		         setInnerHtml("locationPrintArea", getValueOfChildSpan('encounterLocation'));
     		         setInnerHtml("provider", getValueOfChildSpan('encounterProvider'));    		       
@@ -608,7 +607,6 @@ if(jQuery){
 	EditModeHandler.prototype = {
 
 	    handleHeadingSection: function(finalDiagnosis) { //handle heading section
-	         setInnerHtml("finalDiagnosis", finalDiagnosis);
 	         setInnerHtml("date", $j.datepicker.formatDate('dd/M/yy', new Date(getValue('encounterDate.value'))));
 	         setInnerHtml("locationPrintArea", $j('#encounterLocation option:selected').text());
 	         setInnerHtml("provider", $j('#encounterProvider option:selected').text());
@@ -670,11 +668,51 @@ if(jQuery){
 	 },
 	 
 	 handlePathologySection: function() {//handle Pathology section	 
+		 
+		 //Reason for follow-up
+		 
+		 if(getValue('changeInTreatmentIntentObs.value') !=null )
+		 		setInnerHtml('pathologyReasonForFollowUp', 'Change in treatment intent');
+		 if(getValue('changeInTreatmentPlanSurgeryResultsObs.value') !=null )
+		 		setInnerHtml('pathologyReasonForFollowUp', 'Change in treatment plan because of suregery results');
+		 if(getValue('changeInTreatmentIntentOtherResultObs.value') !=null )
+		 		setInnerHtml('pathologyReasonForFollowUp', 'Change in treatment plan because of other result : '+getValue('changeInTreatmentPlanOtherResultTextObs.value'));
+		 
+		 //End of reason for follow-up
+		 
 		 if(getValue('pathologyCompletedYes.value') !=null ){
-			 $j("#pathology tr:gt(1)").show();
+			 $j("#pathology").show();
 			 setInnerHtml('pathologyCompleted', 'Yes');
 			 setInnerHtml('pathologyDate', ''+getValue('dateOfPathologyObs.value'));
-			 setInnerHtml('pathologySite', ''+$j('#siteOfPathologyObs option:selected').text());
+			 
+			 //Site of pathology
+			 if(getValue('siteOfPathologyBWHObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'BWH');
+			 if(getValue('siteOfPathologyBUTAROObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'Butaro');
+			 if(getValue('siteOfPathologyKFHObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'KFH');
+			 if(getValue('siteOfPathologyCHUKObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'CHUK');
+			 if(getValue('siteOfPathologyCHUBObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'CHUB');
+			 if(getValue('siteOfPathologyOTHERObs.value') !=null )
+			 		setInnerHtml('pathologySite', 'Other: '+getValue('siteOfPathologyOTHERTextObs.value'));
+			 //End of site of pathology
+			 
+			 //Pathologic Diagnosis
+			  if(getValue('invasiveDuctalCarcinoma.value') !=null )
+		 		setInnerHtml('pathologyDiagnosis', 'Invasive Ductal Carcinoma');
+			  if(getValue('invasiveLobularCarcinoma.value') !=null )
+			 		setInnerHtml('pathologyDiagnosis', 'Invasive Lobular Carcinoma');
+			  if(getValue('otherInvasiveCarcinoma.value') !=null )
+			 		setInnerHtml('pathologyDiagnosis', 'OtherInvasive Carcinoma :'+getValue('otherInvasiveCarcinomaNonCoded.value'));
+			  if(getValue('otherPathologicDiagnosis.value') !=null )
+			 		setInnerHtml('pathologyDiagnosis', 'Other :'+getValue('otherPathologicDiagnosisNonCoded.value'));
+			  
+			  //End of pathologic Diagnosis
+			  
+			  //Staging
 			 
 			 if(getValue('breastStageERER+.value') !=null )
 			 		setInnerHtml('breastStageER', 'ER+');
@@ -705,14 +743,154 @@ if(jQuery){
 			 	if(getValue('breastStageHFNotDetermined.value') !=null )
 			 	    setInnerHtml('breastStageHF', 'Not determined'); 
 			 	
+			 	//End of staging
+			 	
+			 	//Imaging studies chest
+			 	
 			 	if( getValue('chestXRayObs.value') !=null ){
-			 		$j.datepicker.formatDate('dd/M/yy',$j('#chestXRayObs').find('.hasDatepicker').datepicker('getDate'));
 			 		
+			 		 $j("#imagingStudiesChest").show();
+			 		 
+			 		 var studyDate= $j.datepicker.formatDate('dd/M/yy',$j('#chestXRayObs').find('.hasDatepicker').datepicker('getDate'));
+			 		 
+			 		 var site='';
+			 		
+			 		 if(getValue('siteOfImagingStudiesChestBUTAROObs.value') !=null)
+			 			 site = "Butaro";
+			 		 if(getValue('siteOfImagingStudiesChestKFHObs.value') !=null)
+			 			 site = "KFH";
+			 		 if(getValue('siteOfImagingStudiesChestCHUKObs.value') !=null)
+			 			 site = "CHUK";
+			 		 if(getValue('siteOfImagingStudiesChestCHUBObs.value') !=null)
+			 			 site = "CHUB";
+			 		 if(getValue('siteOfImagingStudiesChestOtherObs.value') !=null)
+			 			 site = "Other: "+getValue('siteOfImagingStudiesChestOtherObsText.value');
+			 		 			 		   
+			 		    setInnerHtml('chestXRayStudyDate', studyDate);
+			 		    setInnerHtml('chestXRaySite', site);
+
+			 		
+			 	}else{
+			 		 $j("#imagingStudiesChest").hide();
 			 	}
+			 	
+			 	//End of Imaging studies chest
+			 	
+                //Imaging studies Abdominal
+			 	
+			 	if( getValue('abdominalPelvicUltrasoundObs.value') !=null ){
+			 		
+			 		 $j("#imagingStudiesAbdominal").show();
+			 		 
+			 		 var studyDate= $j.datepicker.formatDate('dd/M/yy',$j('#abdominalPelvicUltrasoundObs').find('.hasDatepicker').datepicker('getDate'));
+			 		 
+			 		 var site='';
+			 		
+			 		 if(getValue('siteOfImagingStudiesUltrasoundBUTAROObs.value') !=null)
+			 			 site = "Butaro";
+			 		 if(getValue('siteOfImagingStudiesUltrasoundKFHObs.value') !=null)
+			 			 site = "KFH";
+			 		 if(getValue('siteOfImagingStudiesUltrasoundCHUKObs.value') !=null)
+			 			 site = "CHUK";
+			 		 if(getValue('siteOfImagingStudiesUltrasoundCHUBObs.value') !=null)
+			 			 site = "CHUB";
+			 		 if(getValue('siteOfImagingStudiesUltrasoundOtherObs.value') !=null)
+			 			 site = "Other: "+getValue('siteOfImagingStudiesUltrasoundOtherObsText.value');
+			 		 			 		   
+			 		    setInnerHtml('abdominalUSStudyDate', studyDate);
+			 		    setInnerHtml('abdominalUSSite', site);
+
+			 		
+			 	}else{
+			 		 $j("#imagingStudiesAbdominal").hide();
+			 	}
+			 	
+			 	//End of Imaging studies Abdominal
+			 	
+			 	
+               //Imaging studies CT scan
+			 	
+			 	if( getValue('CTScanOfChestAbdomenPelvisObs.value') !=null ){
+			 		
+			 		 $j("#imagingStudiesCTScan").show();
+			 		 
+			 		 var studyDate= $j.datepicker.formatDate('dd/M/yy',$j('#CTScanOfChestAbdomenPelvisObs').find('.hasDatepicker').datepicker('getDate'));
+			 		 
+			 		 var site='';
+			 		
+			 		 if(getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisBUTAROObs.value') !=null)
+			 			 site = "Butaro";
+			 		 if(getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisKFHObs.value') !=null)
+			 			 site = "KFH";
+			 		 if(getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisCHUKObs.value') !=null)
+			 			 site = "CHUK";
+			 		 if(getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisCHUBObs.value') !=null)
+			 			 site = "CHUB";
+			 		 if(getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisOtherObs.value') !=null)
+			 			 site = "Other: "+getValue('siteOfImagingStudiesCTScanChestAbdomenPelvisOtherObsText.value');
+			 		 			 		   
+			 		    setInnerHtml('CTScanStudyDate', studyDate);
+			 		    setInnerHtml('CTScanSite', site);
+
+			 		
+			 	}else{
+			 		 $j("#imagingStudiesCTScan").hide();
+			 	}
+			 	
+			 	//End of Imaging studies CT scan
+			 	
+			 	
+			 //Imaging studies Other
+		 	
+		 	if( getValue('OtherImagingStudyObs.value') !=null ){
+		 		
+		 		 $j("#imagingStudiesOther").show();
+		 		 
+		 		 var studyDate= $j.datepicker.formatDate('dd/M/yy',$j('#OtherImagingStudyObs').find('.hasDatepicker').datepicker('getDate'));
+		 		 
+		 		 var site='';
+		 		
+		 		 if(getValue('siteOfOtherImagingStudyBUTAROObs.value') !=null)
+		 			 site = "Butaro";
+		 		 if(getValue('siteOfOtherImagingStudyKFHObs.value') !=null)
+		 			 site = "KFH";
+		 		 if(getValue('siteOfOtherImagingStudyCHUKObs.value') !=null)
+		 			 site = "CHUK";
+		 		 if(getValue('siteOfOtherImagingStudyCHUBObs.value') !=null)
+		 			 site = "CHUB";
+		 		 if(getValue('siteOfOtherImagingStudyOtherObs.value') !=null)
+		 			 site = "Other: "+getValue('siteOfOtherImagingStudyOtherObsText.value');
+		 		 			 		   
+		 		    setInnerHtml('imagingStudiesOtherStudyDate', studyDate);
+		 		    setInnerHtml('imagingStudiesOtherSite', site);
+
+		 		
+		 	}else{
+		 		 $j("#imagingStudiesOther").hide();
+		 	}
+		 	
+		 	//End of Imaging studies Other
+		 	
+			 //Imaging studies None
+		 	
+		 	if( getValue('CTscanNoneObs.value') !=null ){		 		
+		 		 $j("#imagingStudiesNone").show();
+
+		 		
+		 	}else{
+		 		 $j("#imagingStudiesNone").hide();
+		 	}
+		 	
+		 	//End of Imaging studies None
+		 	
+		 	//Imaging Assessment and Findings
+		 	 setInnerHtml('breastImagingAssessment', getValue('imagingAssessmentAndFindings.value'));
+							
+			//End of Imaging Studies
 			 	
 		 }else{
 			 setInnerHtml('pathologyCompleted', 'No');
-			 $j("#pathology tr:gt(1)").hide();
+			 $j("#pathology").hide();
 		 }
 	 },	 
 	 
@@ -891,7 +1069,17 @@ if(jQuery){
 			<th colspan="3">DISEASE WORK-UP</th>
 		</tr>
 	</table>
+	
+	<table >	
+	<tr class="diagnosisPrintArea">
+			<td class="lables">Reason for follow-up</td>
+			<td colspan="2" class="values"><span id="pathologyReasonForFollowUp"></span>
+			</td>
+		</tr>
+	</table>
+	
 	<table id="pathology">
+	
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Pathology completed</td>
 			<td colspan="2" class="values"><span id="pathologyCompleted"></span>
@@ -903,7 +1091,7 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Institution issuing pathology report</td>
+			<td class="lables">Site of Pathology</td>
 			<td colspan="2" class="values"><span id="pathologySite"></span>
 			</td>
 		</tr>
@@ -932,8 +1120,33 @@ if(jQuery){
 			<td colspan="2" class="values"><span id="breastStageHF"></span>
 			</td>
 		</tr>
-		<tr class="diagnosisPrintArea" id="imagingStudies">
+		<tr class="diagnosisPrintArea">
 			<td colspan="3" class="lables">Imaging Studies</td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="imagingStudiesChest">
+			<td class="lables">Chest X-ray</td>
+			<td class="values">Study Date: <span id="chestXRayStudyDate"></span></td>
+			<td class="values">Site: <span id="chestXRaySite"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="imagingStudiesAbdominal">
+			<td class="lables">Abdominal/Pelvic Ultrasound</td>
+			<td class="values">Study Date: <span id="abdominalUSStudyDate"></span></td>
+			<td class="values">Site: <span id="abdominalUSSite"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="imagingStudiesCTScan">
+			<td class="lables">CT scan of Chest/Abdomen/Pelvis</td>
+			<td class="values">Study Date: <span id="CTScanStudyDate"></span></td>
+			<td class="values">Site: <span id="CTScanSite"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="imagingStudiesOther">
+			<td class="lables">Other</td>
+			<td class="values">Study Date: <span id="imagingStudiesOtherStudyDate"></span></td>
+			<td class="values">Site: <span id="imagingStudiesOtherSite"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="imagingStudiesNone">
+			<td class="lables">None</td>
+			<td class="values"></td>
+			<td class="values"></td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Imaging Assessment &#38; Findings</td>
@@ -1375,40 +1588,38 @@ if(jQuery){
 				
 				</td>
 			</tr>
-			<tr>
+			
+			
+			<tr class="checkboxGroup , spaceUnder">
 				<td>Pathologic Diagnosis:</td>
-				<td><obs id="invasiveDuctalCarcinoma"
+				<td colspan="5"><obs id="invasiveDuctalCarcinoma"
 						conceptId="$@PATHOLOGOGIC_DIAGNOSIS@"
 						answerConceptId="$@INVASIVE_DUCTAL_CARCINOMA@"
-						answerLabel="Invasive Ductal Carcinoma" /></td>
-				<td colspan="2"><obs id="invasiveLobularCarcinoma"
+						answerLabel="Invasive Ductal Carcinoma" /> &#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs id="invasiveLobularCarcinoma"
 						conceptId="$@PATHOLOGOGIC_DIAGNOSIS@"
 						answerConceptId="$@INVASIVE_LOBULAR_CARCINOMA@"
-						answerLabel="Invasive Lobular Carcinoma" /></td>
-						<td colspan="2"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td colspan="5"><obs id="otherInvasiveCarcinoma"
+						answerLabel="Invasive Lobular Carcinoma" /><br/>
+						
+						<obs id="otherInvasiveCarcinoma"
 						conceptId="$@PATHOLOGOGIC_DIAGNOSIS@"
 						answerConceptId="$@OTHER_INVASIVE_CARCINOMA@"
 						answerLabel="OtherInvasive Carcinoma (specify) :" /><obs
 						id="otherInvasiveCarcinomaNonCoded"
 						conceptId="$@OTHER_INVASIVE_CARCINOMA@"
-						labelText="" />
-				</td>
-			</tr>
-			<tr class="spaceUnder">
-				<td></td>
-				<td colspan="5"><obs id="otherPathologicDiagnosis"
+						labelText="" />  <br/>
+						
+						<obs id="otherPathologicDiagnosis"
 						conceptId="$@PATHOLOGOGIC_DIAGNOSIS@"
 						answerConceptId="$@OTHER_NON_CODED@"
 						answerLabel="Other (specify) :" /> <obs
 						id="otherPathologicDiagnosisNonCoded"
 						conceptId="$@PATHOLOGIC_DIAGNOSIS_NON_CODED@"
 						labelText="" />
-				</td>
+						
+						</td>
 			</tr>
+			
+			 
 			<tr class="checkboxGroup">
 				<td>Estrogen receptor:</td>
 				<td><obs id="breastStageERER+"
