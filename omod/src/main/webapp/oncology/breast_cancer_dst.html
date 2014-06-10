@@ -637,7 +637,93 @@ if(jQuery){
      	setInnerHtml('leftBreastMassMobility','Fixed');
  	
      setInnerHtml('diagnosisSkinChanges',getValue('diagnosisSkinChangesObs.value'));
+     
+     //Lymphadenopathy
      setInnerHtml('diagnosisLymphadenopathy',getValue('diagnosisLymphadenopathyObs.value'));
+     
+ 	if( getValue('axillary.value') !=null ){//Axillay 
+ 		
+		 $j("#lymphadenopathyAxillary").show();
+		 
+		 if(getValue('ipsalateralAxillaryMobile.value') !=null)
+		     setInnerHtml('axillaryIpsalateralMobility','Mobile');
+		 
+		 if(getValue('ipsalateralAxillaryFixed.value') !=null)
+			 setInnerHtml('axillaryIpsalateralMobility','Fixed');
+		 
+		 if(getValue('contralateralAxillaryMobile.value') !=null)
+		     setInnerHtml('axillaryContralateralMobility','Mobile');
+		 
+		 if(getValue('contralateralAxillaryFixed.value') !=null)
+			 setInnerHtml('axillaryContralateralMobility','Fixed');
+		 
+ 	}else{
+ 		 $j("#lymphadenopathyAxillary").hide();
+ 	}
+ 	
+ 	if( getValue('infraclavicular.value') !=null ){//Infraclavicular 
+ 		
+		 $j("#lymphadenopathyInfraclavicular").show();
+		 
+		 if(getValue('ipsalateralInfraclavicularMobile.value') !=null)
+		     setInnerHtml('infraclavicularIpsalateralMobility','Mobile');
+		 
+		 if(getValue('ipsalateralInfraclavicularFixed.value') !=null)
+			 setInnerHtml('infraclavicularIpsalateralMobility','Fixed');
+		 
+		 if(getValue('contralateralInfraclavicularMobile.value') !=null)
+		     setInnerHtml('infraclavicularContralateralMobility','Mobile');
+		 
+		 if(getValue('contralateralInfraclavicularFixed.value') !=null)
+			 setInnerHtml('infraclavicularContralateralMobility','Fixed');
+		 
+	}else{
+		 $j("#lymphadenopathyInfraclavicular").hide();
+	}
+ 	
+ 	if( getValue('supraclavicular.value') !=null ){//Supraclavicular
+ 		
+		 $j("#lymphadenopathySupraclavicular").show();
+		 
+		 if(getValue('ipsalateralSupraclavicularMobile.value') !=null)
+		     setInnerHtml('supraclavicularIpsalateralMobility','Mobile');
+		 
+		 if(getValue('ipsalateralSupraclavicularFixed.value') !=null)
+			 setInnerHtml('supraclavicularIpsalateralMobility','Fixed');
+		 
+		 if(getValue('contralateralSupraclavicularMobile.value') !=null)
+		     setInnerHtml('supraclavicularContralateralMobility','Mobile');
+		 
+		 if(getValue('contralateralSupraclavicularFixed.value') !=null)
+			 setInnerHtml('supraclavicularContralateralMobility','Fixed');
+		 
+	}else{
+		 $j("#lymphadenopathySupraclavicular").hide();
+	}
+ 	
+ 	if( getValue('internalMammary.value') !=null ){//Internal mammary
+ 		
+		 $j("#lymphadenopathyinternalMammary").show();
+		 
+		 if(getValue('ipsalateralInternalMammaryMobile.value') !=null)
+		     setInnerHtml('internalMammaryIpsalateralMobility','Mobile');
+		 
+		 if(getValue('ipsalateralInternalMammaryFixed.value') !=null)
+			 setInnerHtml('internalMammaryIpsalateralMobility','Fixed');
+		 
+		 if(getValue('contralateralInternalMammaryMobile.value') !=null)
+		     setInnerHtml('internalMammaryContralateralMobility','Mobile');
+		 
+		 if(getValue('contralateralInternalMammaryFixed.value') !=null)
+			 setInnerHtml('internalMammaryContralateralMobility','Fixed');
+		 
+	}else{
+		 $j("#lymphadenopathyinternalMammary").hide();
+	}
+ 	     
+     
+     //End of Lymphadenopathy
+     
      setInnerHtml('diagnosisComments', getValue('diagnosisCommentsObs.value'));
  	
      setInnerHtml('stageTNMT', $j('#stageTNMTObs option:selected').text());
@@ -1121,7 +1207,7 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td colspan="3" class="lables">Imaging Studies</td>
+			<td colspan="3" class="lables"><b>Imaging Studies</b></td>
 		</tr>
 		<tr class="diagnosisPrintArea" id="imagingStudiesChest">
 			<td class="lables">Chest X-ray</td>
@@ -1182,8 +1268,28 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Lymphadenopathy</td>
-			<td colspan="2" class="values"><span id="diagnosisLymphadenopathy"></span></td>
+			<td class="lables"><b>Lymphadenopathy</b></td>
+			<td colspan="2" class="values"></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="lymphadenopathyAxillary">
+			<td class="lables">axillary level I/II</td>
+			<td class="values">ipsalateral:<span id="axillaryIpsalateralMobility"></span></td>
+			<td class="values">contralateral:<span id="axillaryContralateralMobility"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="lymphadenopathyInfraclavicular">
+			<td class="lables">infraclavicular/axillary level III</td>
+			<td class="values">ipsalateral:<span id="infraclavicularIpsalateralMobility"></span></td>
+			<td class="values">contralateral:<span id="infraclavicularContralateralMobility"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="lymphadenopathySupraclavicular">
+			<td class="lables">supraclavicular</td>
+			<td class="values">ipsalateral:<span id="supraclavicularIpsalateralMobility"></span></td>
+			<td class="values">contralateral:<span id="supraclavicularContralateralMobility"></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea" id="lymphadenopathyinternalMammary">
+			<td class="lables">internal mammary</td>
+			<td class="values">ipsalateral:<span id="internalMammaryIpsalateralMobility"></span></td>
+			<td class="values">contralateral:<span id="internalMammaryContralateralMobility"></span></td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
@@ -1192,12 +1298,12 @@ if(jQuery){
 			</td>
 		</tr>
 		<tr bgcolor="#D9D9D9" class="diagnosisPrintArea">
-			<td colspan="3">Confirmed Disease Stage</td>
+			<td colspan="3"><b>Confirmed Disease Stage</b></td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">TNM Pathologic Staging*</td>
-			<td colspan="2" class="values">T: <span id="stageTNMT"></span>
-				N: <span id="stageTNMN"></span> M:<span id="stageTNMM"></span></td>
+			<td colspan="2" class="values">T:<span id="stageTNMT"></span>&#160;&#160;&#160;&#160;&#160;
+				N:<span id="stageTNMN"></span>&#160;&#160;&#160;&#160;&#160;M:<span id="stageTNMM"></span></td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Overall Stage*</td>
@@ -1901,12 +2007,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="ipsalateralMobile"
+						<obs id="ipsalateralAxillaryMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="ipsalateralFixed"
+						<obs id="ipsalateralAxillaryFixed"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -1921,12 +2027,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="contralateralMobile"
+						<obs id="contralateralAxillaryMobile"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="contralateralFixed"
+						<obs id="contralateralAxillaryFixed"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -1940,19 +2046,19 @@ if(jQuery){
 						conceptId="$@LYMPHANEDOPATHY_LEVELS@"
 						answerConceptId="$@INFRACLAVICULAR_AXILLARY_LEVEL_III@"
 						answerLabel="infraclavicular/axillary level III" /></td>
-				<td colspan="2"><obs id="ipsalateralInfra"
+				<td colspan="2"><obs id="ipsalateralInfraclavicular"
 						conceptId="$@INFRACLAVICULAR_AXILLARY_LEVEL_III@"
 						answerConceptId="$@IPSALATERAL@"
 						answerLabel="ipsalateral: "/>
 						
 						<span class="checkboxGroup">
 												
-						<obs id="ipsalateralMobile"
+						<obs id="ipsalateralInfraclavicularMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="ipsalateralFixed"
+						<obs id="ipsalateralInfraclavicularFixed"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -1960,19 +2066,19 @@ if(jQuery){
 						</span>
 				</td>
 				
-				<td colspan="2"><obs id="contralateralInfra"
+				<td colspan="2"><obs id="contralateralInfraclavicular"
 						conceptId="$@INFRACLAVICULAR_AXILLARY_LEVEL_III@"
 						answerConceptId="$@CONTRALATERAL@"
 						answerLabel="contralateral: "/>
 						
 						<span class="checkboxGroup">
 						
-						<obs id="contralateralMobile"
+						<obs id="contralateralInfraclavicularMobile"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="contralateralFixed"
+						<obs id="contralateralInfraclavicularFixed"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -1993,12 +2099,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="ipsalateralMobile"
+						<obs id="ipsalateralSupraclavicularMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="ipsalateralFixed"
+						<obs id="ipsalateralSupraclavicularFixed"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -2013,12 +2119,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="contralateralMobile"
+						<obs id="contralateralSupraclavicularMobile"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="contralateralFixed"
+						<obs id="contralateralSupraclavicularFixed"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -2039,12 +2145,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="ipsalateralMobile"
+						<obs id="ipsalateralInternalMammaryMobile"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="ipsalateralFixed"
+						<obs id="ipsalateralInternalMammaryFixed"
 						conceptId="$@IPSALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
@@ -2059,12 +2165,12 @@ if(jQuery){
 						
 						<span class="checkboxGroup">
 						
-						<obs id="contralateralMobile"
+						<obs id="contralateralInternalMammaryMobile"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@MOBILE@"
 						answerLabel="mobile "/>
 						
-						<obs id="contralateralFixed"
+						<obs id="contralateralInternalMammaryFixed"
 						conceptId="$@CONTRALATERAL@"
 						answerConceptId="$@FIXED@"
 						answerLabel="fixed/matted"/>
