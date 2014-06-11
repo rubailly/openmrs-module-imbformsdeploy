@@ -1006,7 +1006,7 @@ if(jQuery){
          $j('#radiationTreatmentPlan').hide();
         
          
-       //find selected sections
+       //handle chemotherapy sections if selected
         var trigger23_1 = $j('#trigger23_1').find("input[type$='checkbox']").is(':checked');
         var trigger23_2 = $j('#trigger23_2').find("input[type$='checkbox']").is(':checked');
         var trigger23_3 = $j('#trigger23_3').find("input[type$='checkbox']").is(':checked');
@@ -1038,13 +1038,7 @@ if(jQuery){
             	 if(getValue('regimenTimingPalliative'+index+'.value') !=null)
             		 return "Palliative";            	 
             	};
-    
         
-        var surgeryPlanned = $j(".surgery").find(":checked").closest("td").attr("id");
-        var radiationPlanned = $j(".radiation").find(":checked").closest("td").attr("id");
-        
-         
-         //handle chemotherapy sections if selected
          if(trigger23_1){
          	$j('#chemotherapyTreatmentPlan_1').show();
      		setInnerHtml('chemotherapyRegimenType_1', ''+getRegimenType(1));
@@ -1096,23 +1090,88 @@ if(jQuery){
       	}else{
       		$j('#chemotherapyTreatmentPlan_4').hide();
       	}           
-         
-         
+                  
         
        //handle surgery section if selected
+       
+         var getSurgeryFacility = function(){
+        	 if(getValue('surgeryFacilityObsButaro.value') !=null)
+        		 return "Butaro";
+        	 if(getValue('surgeryFacilityObsKFH.value') !=null)
+        		 return "KFH";
+        	 if(getValue('surgeryFacilityObsCHUK.value') !=null)
+        		 return "CHUK";
+        	 if(getValue('surgeryFacilityObsCHUB.value') !=null)
+        		 return "CHUB";
+        	 if(getValue('surgeryFacilityObsOther.value') !=null)
+        		 return "Other: "+getValue('siteOfSurgeryOTHERTextObs.value');
+        	};
+        	
+        	 var getSurgeryType = function(){
+            	 if(getValue('surgeryTypeObsMOdifiedRadical.value') !=null)
+            		 return "Modified Radical Mastectomy WITH Axillary Lymph Node Dissection";
+            	 if(getValue('surgeryTypeObsOther.value') !=null)
+            		 return "Other: "+getValue('SurgeryTypeOTHERTextObs.value');
+            	};
+            	
+            	 var getSurgeryReportInstitution = function(){
+            		 if(getValue('institutionsPathologyObsBWH.value') !=null)
+                		 return "BWH";
+                	 if(getValue('institutionsPathologyObsButaro.value') !=null)
+                		 return "Butaro";
+                	 if(getValue('institutionsPathologyObsKFH.value') !=null)
+                		 return "KFH";
+                	 if(getValue('institutionsPathologyObsCHUK.value') !=null)
+                		 return "CHUK";
+                	 if(getValue('institutionsPathologyObsCHUB.value') !=null)
+                		 return "CHUB";
+                	 if(getValue('institutionsPathologyObsOther.value') !=null)
+                		 return "Other: "+getValue('siteOfPathologyReportOTHERTextObs.value');
+                	};
+                	
+                	 var getSurgeryOperativeReportInstitution = function(){
+                    	 if(getValue('institutionsSurgeryObsButaro.value') !=null)
+                    		 return "Butaro";
+                    	 if(getValue('institutionsSurgeryObsOther.value') !=null)
+                    		 return "Other: "+getValue('siteOfOperativeReportOTHERTextObs.value');
+                    	};
+                    	
+                    	 var getSurgeryPerformed = function(){
+                        	 if(getValue('surgeryPerformedObsMOdifiedRadical.value') !=null)
+                        		 return "Modified Radical Mastectomy WITH Axillary Lymph Node Dissection";
+                        	 if(getValue('surgeryPerformedObsOther.value') !=null)
+                        		 return "Other: "+getValue('surgeryPerformedOTHERTextObs.value');
+                        	};
+                	
+       
+        var surgeryPlanned = $j(".surgery").find(":checked").closest("td").attr("id");
+        
          if(surgeryPlanned == 'trigger21'){
          	$j('#surgeryTreatmentPlan').show();
-     		setInnerHtml('surgeryFacility', ''+getValue('surgeryFacilityObs.value'));
-     		setInnerHtml('surgeryStartDate', ''+getValue('surgeryStartDateObs.value'));
-     		setInnerHtml('surgeryType', ''+getValue('surgeryTypeObs.value'));
+     		setInnerHtml('surgeryFacility', ''+getSurgeryFacility());
+     		setInnerHtml('surgeryStartDate', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('surgeryStartDateObs.value'))));
+     		setInnerHtml('surgeryType', ''+getSurgeryType());
+     		setInnerHtml('surgeryReportDate', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('surgeryPathologyReportDateObs.value'))));
+     		setInnerHtml('surgeryReportInstitution', ''+getSurgeryReportInstitution());
+     		setInnerHtml('surgeryOperativeReportDate', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('surgeryDateObs.value'))));
+     		setInnerHtml('surgeryOperativeReportInstitution', ''+getSurgeryOperativeReportInstitution()+"         Procedure: "+getValue('surgeryProcedureObs.value'));
+     		setInnerHtml('surgeryPerformed', ''+getSurgeryPerformed());
+     		setInnerHtml('surgeryPathologyNStage', ''+getValue('pathologicNStageTextObs.value'));
+     	}else{
+     		$j('#surgeryTreatmentPlan').hide();
      	}
 
          //handle radiation section if selected
+         
+         var radiationPlanned = $j(".radiation").find(":checked").closest("td").attr("id");
+         
          if(radiationPlanned == 'trigger22'){
          	$j('#radiationTreatmentPlan').show();
      		setInnerHtml('radiationFacility', ''+$j('#radiationFacilityObs option:selected').text());
      		setInnerHtml('radiationStartDate', ''+getValue('radiationStartDateObs.value'));
 
+     	}else{
+     		$j('#radiationTreatmentPlan').hide();
      	}
 	 },
 	};
@@ -2924,9 +2983,9 @@ lymph node metastases.</li>
 			<obsgroup groupingConceptId="$@OPERATIVE_REPORT_CONSTRUCT@">
 				<td>Date of Surgery:<obs id="surgeryDateObs"
 						conceptId="$@DATE_OF_SURGERY@" labelText="" /></td>
-				<td>Institution:<obs id="institutionsSurgeryObs"
+				<td>Institution:<obs id="institutionsSurgeryObsButaro"
 						conceptId="$@OPERATIVE_REPROT_FACILITY@" answerConceptId="682754d6-cff2-4f2e-90a3-ea3b1e7fa230" answerLabel="Butaro " />
-						<obs id="institutionsSurgeryObs"
+						<obs id="institutionsSurgeryObsOther"
 						conceptId="$@OPERATIVE_REPROT_FACILITY@" answerConceptId="3cee7fb4-26fe-102b-80cb-0017a47871b2" answerLabel="Other: " />
 						<obs id="siteOfOperativeReportOTHERTextObs" conceptId="a8e5e461-7432-4ff5-a78a-472cceb77c23" />
 						</td>
@@ -2938,9 +2997,9 @@ lymph node metastases.</li>
 			<tr class="spaceUnder, checkboxGroup">
 				<td>Surgery Performed:</td>
 				<td colspan="3">
-						<obs id="surgeryTypeObsModifiedRadical"
+						<obs id="surgeryPerformedObsModifiedRadical"
 						conceptId="$@SURGERY_PERFORMED@" answerConceptId="39e80b62-254e-46aa-aa9a-1fa92c90d6ab" answerLabel="Modified Radical Mastectomy WITH Axillary Lymph Node Dissection " /><br/>
-						<obs id="surgeryTypeObsModifiedRadical"
+						<obs id="surgeryPerformedObsOther"
 						conceptId="$@SURGERY_PERFORMED@" answerConceptId="4eeeb806-b306-407e-a46f-19eafd59f71b" answerLabel="Other:" />	
 						<obs id="surgeryPerformedOTHERTextObs" conceptId="ecb42d79-3fbc-4d7d-b8d8-cc7b8a1b0114" />					
 						</td>
