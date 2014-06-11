@@ -998,17 +998,106 @@ if(jQuery){
      handleTreatmentPlanSection: function() {//handle Treatment Plan section
          /*  now that we are going to play with the treatment plan sections (i.e surgery, radiation and chemotherapy) 
          we need to initisalize them to hidden state and we'll be toggling them one by one according to whether a section is selected or not */
-         $j('#surgeryTreatmentPlan').hide();
-         $j('#radiationTreatmentPlan').hide();
          $j('#chemotherapyTreatmentPlan_1').hide();
          $j('#chemotherapyTreatmentPlan_2').hide();
          $j('#chemotherapyTreatmentPlan_3').hide();
          $j('#chemotherapyTreatmentPlan_4').hide();
+         $j('#surgeryTreatmentPlan').hide();
+         $j('#radiationTreatmentPlan').hide();
+        
          
        //find selected sections
-         var surgeryPlanned = $j(".surgery").find(":checked").closest("td").attr("id");
-         var radiationPlanned = $j(".radiation").find(":checked").closest("td").attr("id");
-         var chemotherapyPlanned = $j(".chemotherapy").find(":checked").closest("td").attr("id"); 
+        var trigger23_1 = $j('#trigger23_1').find("input[type$='checkbox']").is(':checked');
+        var trigger23_2 = $j('#trigger23_2').find("input[type$='checkbox']").is(':checked');
+        var trigger23_3 = $j('#trigger23_3').find("input[type$='checkbox']").is(':checked');
+        var trigger23_4 = $j('#trigger23_4').find("input[type$='checkbox']").is(':checked');
+        
+        var getRegimenType = function(index){
+        	 if(getValue('chemotherapyRegimenTamoxifen'+index+'.value') !=null)
+        		 return "Tamoxifen";
+        	 if(getValue('chemotherapyRegimenAC'+index+'.value') !=null)
+        		 return "AC";
+        	 if(getValue('chemotherapyRegimenPaclitaxel'+index+'.value') !=null)
+        		 return "Paclitaxel";
+        	 if(getValue('chemotherapyRegimen5-FU'+index+'.value') !=null)
+        		 return "5-FU";
+        	 if(getValue('chemotherapyRegimenDoxorubicin'+index+'.value') !=null)
+        		 return "Doxorubicin";
+        	 if(getValue('chemotherapyRegimenCyclophosphamide'+index+'.value') !=null)
+        		 return "Cyclophosphamide";
+        	 if(getValue('chemotherapyRegimenOther'+index+'.value') !=null)
+        		 return "Other: "+getValue('chemotherapyRegimenOtherTextObs'+index+'.value');
+        	 
+        	};
+        	
+        	 var getRegimenTiming = function(index){
+            	 if(getValue('regimenTimingNeoadjuvant'+index+'.value') !=null)
+            		 return "Neoadjuvant";
+            	 if(getValue('regimenTimingAdjuvant'+index+'.value') !=null)
+            		 return "Adjuvant";
+            	 if(getValue('regimenTimingPalliative'+index+'.value') !=null)
+            		 return "Palliative";            	 
+            	};
+    
+        
+        var surgeryPlanned = $j(".surgery").find(":checked").closest("td").attr("id");
+        var radiationPlanned = $j(".radiation").find(":checked").closest("td").attr("id");
+        
+         
+         //handle chemotherapy sections if selected
+         if(trigger23_1){
+         	$j('#chemotherapyTreatmentPlan_1').show();
+     		setInnerHtml('chemotherapyRegimenType_1', ''+getRegimenType(1));
+     		setInnerHtml('chemotherapyRegimenTiming_1', ''+getRegimenTiming(1));
+     		setInnerHtml('chemotherapyCycles_1', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs1.value'),'',Math.floor(getValue('chemotherapyCyclesObs1.value'))));
+     		setInnerHtml('chemotherapyFirstCycle_1', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyFirstCycleObs1.value'))));
+     		setInnerHtml('chemotherapyRegimenEnd_1', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyRegimenEnd1.value'))));
+     		setInnerHtml('chemotherapyStandardRegimen_1', ''+getValue('chemotherapyStandardRegimenObs1.value'));
+
+     	}else{
+     		$j('#chemotherapyTreatmentPlan_1').hide();
+     	}
+         
+         if(trigger23_2){
+          	$j('#chemotherapyTreatmentPlan_2').show();
+      		setInnerHtml('chemotherapyRegimenType_2', ''+getRegimenType(2));
+      		setInnerHtml('chemotherapyRegimenTiming_2', ''+getRegimenTiming(2));
+      		setInnerHtml('chemotherapyCycles_2', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs2.value'),'',Math.floor(getValue('chemotherapyCyclesObs2.value'))));
+      		setInnerHtml('chemotherapyFirstCycle_2', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyFirstCycleObs2.value'))));
+      		setInnerHtml('chemotherapyRegimenEnd_2', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyRegimenEnd2.value'))));
+      		setInnerHtml('chemotherapyStandardRegimen_2', ''+getValue('chemotherapyStandardRegimenObs2.value'));
+
+      	}else{
+      		$j('#chemotherapyTreatmentPlan_2').hide();
+      	}
+         
+         if(trigger23_3){
+          	$j('#chemotherapyTreatmentPlan_3').show();
+      		setInnerHtml('chemotherapyRegimenType_3', ''+getRegimenType(3));
+      		setInnerHtml('chemotherapyRegimenTiming_3', ''+getRegimenTiming(3));
+      		setInnerHtml('chemotherapyCycles_3', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs3.value'),'',Math.floor(getValue('chemotherapyCyclesObs3.value'))));
+      		setInnerHtml('chemotherapyFirstCycle_3', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyFirstCycleObs3.value'))));
+      		setInnerHtml('chemotherapyRegimenEnd_3', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyRegimenEnd3.value'))));
+      		setInnerHtml('chemotherapyStandardRegimen_3', ''+getValue('chemotherapyStandardRegimenObs3.value'));
+
+      	}else{
+      		$j('#chemotherapyTreatmentPlan_3').hide();
+      	}
+         
+         if(trigger23_4){
+          	$j('#chemotherapyTreatmentPlan_4').show();
+      		setInnerHtml('chemotherapyRegimenType_4', ''+getRegimenType(4));
+      		setInnerHtml('chemotherapyRegimenTiming_4', ''+getRegimenTiming(4));
+      		setInnerHtml('chemotherapyCycles_4', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs4.value'),'',Math.floor(getValue('chemotherapyCyclesObs4.value'))));
+      		setInnerHtml('chemotherapyFirstCycle_4', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyFirstCycleObs4.value'))));
+      		setInnerHtml('chemotherapyRegimenEnd_4', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('chemotherapyRegimenEnd4.value'))));
+      		setInnerHtml('chemotherapyStandardRegimen_4', ''+getValue('chemotherapyStandardRegimenObs4.value'));
+
+      	}else{
+      		$j('#chemotherapyTreatmentPlan_4').hide();
+      	}           
+         
+         
         
        //handle surgery section if selected
          if(surgeryPlanned == 'trigger21'){
@@ -1025,27 +1114,6 @@ if(jQuery){
      		setInnerHtml('radiationStartDate', ''+getValue('radiationStartDateObs.value'));
 
      	}
-         
-       //handle chemotherapy section if selected
-         if(chemotherapyPlanned == 'trigger23_1'){
-         	$j('#chemotherapyTreatmentPlan_1').show();
-     		setInnerHtml('chemotherapyRegimen', ''+$j('#chemotherapyRegimenObs option:selected').text());
-     		setInnerHtml('chemotherapyCycles', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs.value'),'',Math.floor(getValue('chemotherapyCyclesObs.value'))));
-     		setInnerHtml('chemotherapyFirstCycle', ''+getValue('chemotherapyFirstCycleObs.value'));
-     		setInnerHtml('chemotherapyRegimenEnd', ''+checkEmptyInputs(getValue('chemotherapyRegimenEndObs.value'),'',getValue('chemotherapyRegimenEndObs.value')+' week(s)'));
-     		setInnerHtml('chemotherapyStandardRegimen', ''+getValue('chemotherapyStandardRegimenObs.value'));
-
-     	}
-       
-         if(chemotherapyPlanned == 'trigger23_2'){
-          	$j('#chemotherapyTreatmentPlan_2').show();
-      		setInnerHtml('chemotherapyRegimen', ''+$j('#chemotherapyRegimenObs option:selected').text());
-      		setInnerHtml('chemotherapyCycles', ''+checkEmptyInputs(getValue('chemotherapyCyclesObs.value'),'',Math.floor(getValue('chemotherapyCyclesObs.value'))));
-      		setInnerHtml('chemotherapyFirstCycle', ''+getValue('chemotherapyFirstCycleObs.value'));
-      		setInnerHtml('chemotherapyRegimenEnd', ''+checkEmptyInputs(getValue('chemotherapyRegimenEndObs.value'),'',getValue('chemotherapyRegimenEndObs.value')+' week(s)'));
-      		setInnerHtml('chemotherapyStandardRegimen', ''+getValue('chemotherapyStandardRegimenObs.value'));
-
-      	}
 	 },
 	};
     
@@ -1329,159 +1397,159 @@ if(jQuery){
 	</table>
 	<br/>
 	
-		<table id="chemotherapyTreatmentPlan1">
+		<table id="chemotherapyTreatmentPlan_1">
 		<tr class="diagnosisPrintArea">
 			<th colspan="3">Chemotherapy</th>
 		</tr>
 
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Type</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenType1"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType_1"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Timing</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming1"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming_1"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Cycles</td>
-			<td colspan="2" class="values"><span id="chemotherapyCycles1"></span>
+			<td colspan="2" class="values"><span id="chemotherapyCycles_1"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned first cycle</td>
-			<td colspan="2" class="values"><span id="chemotherapyFirstCycle1"></span>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle_1"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned regimen end</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd1"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd_1"></span>
 				</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Planned changes to standard regimen</td>
 			<td colspan="2" class="values"><span
-				id="chemotherapyStandardRegimen1"></span></td>
+				id="chemotherapyStandardRegimen_1"></span></td>
 		</tr>
 	</table>
 	
-	<table id="chemotherapyTreatmentPlan2">
+	<table id="chemotherapyTreatmentPlan_2">
 		<tr class="diagnosisPrintArea">
 			<th colspan="3">Chemotherapy</th>
 		</tr>
 
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Type</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenType2"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType_2"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Timing</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming2"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming_2"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Cycles</td>
-			<td colspan="2" class="values"><span id="chemotherapyCycles2"></span>
+			<td colspan="2" class="values"><span id="chemotherapyCycles_2"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned first cycle</td>
-			<td colspan="2" class="values"><span id="chemotherapyFirstCycle2"></span>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle_2"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned regimen end</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd2"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd_2"></span>
 				</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Planned changes to standard regimen</td>
 			<td colspan="2" class="values"><span
-				id="chemotherapyStandardRegimen2"></span></td>
+				id="chemotherapyStandardRegimen_2"></span></td>
 		</tr>
 	</table>
 	
-	<table id="chemotherapyTreatmentPlan3">
+	<table id="chemotherapyTreatmentPlan_3">
 		<tr class="diagnosisPrintArea">
 			<th colspan="3">Chemotherapy</th>
 		</tr>
 
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Type</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenType3"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType_3"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Timing</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming3"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming_3"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Cycles</td>
-			<td colspan="2" class="values"><span id="chemotherapyCycles3"></span>
+			<td colspan="2" class="values"><span id="chemotherapyCycles_3"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned first cycle</td>
-			<td colspan="2" class="values"><span id="chemotherapyFirstCycle3"></span>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle_3"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned regimen end</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd3"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd_3"></span>
 				</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Planned changes to standard regimen</td>
 			<td colspan="2" class="values"><span
-				id="chemotherapyStandardRegimen3"></span></td>
+				id="chemotherapyStandardRegimen_3"></span></td>
 		</tr>
 	</table>
 	
-	<table id="chemotherapyTreatmentPlan4">
+	<table id="chemotherapyTreatmentPlan_4">
 		<tr class="diagnosisPrintArea">
 			<th colspan="3">Chemotherapy</th>
 		</tr>
 
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Type</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenType4"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenType_4"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Regimen Timing</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming4"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenTiming_4"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Cycles</td>
-			<td colspan="2" class="values"><span id="chemotherapyCycles4"></span>
+			<td colspan="2" class="values"><span id="chemotherapyCycles_4"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned first cycle</td>
-			<td colspan="2" class="values"><span id="chemotherapyFirstCycle4"></span>
+			<td colspan="2" class="values"><span id="chemotherapyFirstCycle_4"></span>
 			</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 
 			<td class="lables">Planned regimen end</td>
-			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd4"></span>
+			<td colspan="2" class="values"><span id="chemotherapyRegimenEnd_4"></span>
 				</td>
 		</tr>
 		<tr class="diagnosisPrintArea">
 			<td class="lables">Planned changes to standard regimen</td>
 			<td colspan="2" class="values"><span
-				id="chemotherapyStandardRegimen4"></span></td>
+				id="chemotherapyStandardRegimen_4"></span></td>
 		</tr>
 	</table>
 
@@ -2383,6 +2451,7 @@ lymph node metastases.</li>
 			</td>
 			<td></td>
 		</tr>
+
 		<tr class="checkboxGroup , surgery">
 			<td>Surgery</td>
 			<td id="trigger21"><workflowState
@@ -2437,20 +2506,20 @@ lymph node metastases.</li>
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="74120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cyclophosphamide" /><br/>
 						<obs id="chemotherapyRegimenOther1"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="24de1822-9f3e-40e3-a690-0a293aeba040" answerLabel="Other: " />
-						<obs id="siteOfSurgeryOTHERTextObs" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
+						<obs id="chemotherapyRegimenOtherTextObs1" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr class="checkboxGroup">
 				<td>Regimen Timing</td>
-				<td><obs id="regimenTimingNeoadjuvant"
+				<td><obs id="regimenTimingNeoadjuvant1"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant1"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative1"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
 						answerLabel="Palliative" />
@@ -2461,7 +2530,7 @@ lymph node metastases.</li>
 			
 			<tr>
 				<td>Cycles</td>
-				<td><obs id="chemotherapyCyclesObs"
+				<td><obs id="chemotherapyCyclesObs1"
 						conceptId="$@NUMBER_OF_PLANNED_CHEMOTHERAPY_CYCLES@" labelText="" />
 				</td>
 				<td></td>
@@ -2469,7 +2538,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned first cycle</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyFirstCycleObs1"
 						conceptId="$@PLANNED_CHEMOTHERAPY_START_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2477,7 +2546,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned regimen end</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyRegimenEnd1"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN_END_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2485,7 +2554,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Planned changes to standard regimen</td>
-				<td><obs id="chemotherapyStandardRegimenObs"
+				<td><obs id="chemotherapyStandardRegimenObs1"
 						conceptId="$@PLANNED_CHANGES_TO_STANDARD_CHEMOTHERAPY_REGIMEN@" labelText="" />
 				</td>
 				<td></td>
@@ -2522,20 +2591,20 @@ lymph node metastases.</li>
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="74120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cyclophosphamide" /><br/>
 						<obs id="chemotherapyRegimenOther2"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="24de1822-9f3e-40e3-a690-0a293aeba040" answerLabel="Other: " />
-						<obs id="siteOfSurgeryOTHERTextObs" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
+						<obs id="chemotherapyRegimenOtherTextObs2" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr class="checkboxGroup">
 				<td>Regimen Timing</td>
-				<td><obs id="regimenTimingNeoadjuvant"
+				<td><obs id="regimenTimingNeoadjuvant2"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant2"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative2"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
 						answerLabel="Palliative" />
@@ -2546,7 +2615,7 @@ lymph node metastases.</li>
 			
 			<tr>
 				<td>Cycles</td>
-				<td><obs id="chemotherapyCyclesObs"
+				<td><obs id="chemotherapyCyclesObs2"
 						conceptId="$@NUMBER_OF_PLANNED_CHEMOTHERAPY_CYCLES@" labelText="" />
 				</td>
 				<td></td>
@@ -2554,7 +2623,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned first cycle</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyFirstCycleObs2"
 						conceptId="$@PLANNED_CHEMOTHERAPY_START_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2562,7 +2631,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned regimen end</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyRegimenEnd2"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN_END_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2570,7 +2639,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Planned changes to standard regimen</td>
-				<td><obs id="chemotherapyStandardRegimenObs"
+				<td><obs id="chemotherapyStandardRegimenObs2"
 						conceptId="$@PLANNED_CHANGES_TO_STANDARD_CHEMOTHERAPY_REGIMEN@" labelText="" />
 				</td>
 				<td></td>
@@ -2609,20 +2678,20 @@ lymph node metastases.</li>
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="74120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cyclophosphamide" /><br/>
 						<obs id="chemotherapyRegimenOther3"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="24de1822-9f3e-40e3-a690-0a293aeba040" answerLabel="Other: " />
-						<obs id="siteOfSurgeryOTHERTextObs" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
+						<obs id="chemotherapyRegimenOtherTextObs3" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr class="checkboxGroup">
 				<td>Regimen Timing</td>
-				<td><obs id="regimenTimingNeoadjuvant"
+				<td><obs id="regimenTimingNeoadjuvant3"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant3"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative3"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
 						answerLabel="Palliative" />
@@ -2633,7 +2702,7 @@ lymph node metastases.</li>
 			
 			<tr>
 				<td>Cycles</td>
-				<td><obs id="chemotherapyCyclesObs"
+				<td><obs id="chemotherapyCyclesObs3"
 						conceptId="$@NUMBER_OF_PLANNED_CHEMOTHERAPY_CYCLES@" labelText="" />
 				</td>
 				<td></td>
@@ -2641,7 +2710,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned first cycle</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyFirstCycleObs3"
 						conceptId="$@PLANNED_CHEMOTHERAPY_START_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2649,7 +2718,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned regimen end</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyRegimenEnd3"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN_END_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2657,7 +2726,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Planned changes to standard regimen</td>
-				<td><obs id="chemotherapyStandardRegimenObs"
+				<td><obs id="chemotherapyStandardRegimenObs3"
 						conceptId="$@PLANNED_CHANGES_TO_STANDARD_CHEMOTHERAPY_REGIMEN@" labelText="" />
 				</td>
 				<td></td>
@@ -2696,20 +2765,20 @@ lymph node metastases.</li>
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="74120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cyclophosphamide" /><br/>
 						<obs id="chemotherapyRegimenOther4"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN@" answerConceptId="24de1822-9f3e-40e3-a690-0a293aeba040" answerLabel="Other: " />
-						<obs id="siteOfSurgeryOTHERTextObs" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
+						<obs id="chemotherapyRegimenOtherTextObs4" conceptId="24de1822-9f3e-40e3-a690-0a293aeba040" />
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr class="checkboxGroup">
 				<td>Regimen Timing</td>
-				<td><obs id="regimenTimingNeoadjuvant"
+				<td><obs id="regimenTimingNeoadjuvant4"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@NEOADJUVANT@"
-						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant"
+						answerLabel="Neoadjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingAdjuvant4"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@ADJUVANT@"
-						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative"
+						answerLabel="Adjuvant" />&#160;&#160;&#160;&#160;<obs id="regimenTimingPalliative4"
 						conceptId="$@CHEMOTHERAPY_REGIMEN_TIMING@"
 						answerConceptId="$@PALLIATIVE@"
 						answerLabel="Palliative" />
@@ -2720,7 +2789,7 @@ lymph node metastases.</li>
 			
 			<tr>
 				<td>Cycles</td>
-				<td><obs id="chemotherapyCyclesObs"
+				<td><obs id="chemotherapyCyclesObs4"
 						conceptId="$@NUMBER_OF_PLANNED_CHEMOTHERAPY_CYCLES@" labelText="" />
 				</td>
 				<td></td>
@@ -2728,7 +2797,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned first cycle</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyFirstCycleObs4"
 						conceptId="$@PLANNED_CHEMOTHERAPY_START_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2736,7 +2805,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr>
 				<td>Planned regimen end</td>
-				<td><obs id="chemotherapyFirstCycleObs"
+				<td><obs id="chemotherapyRegimenEnd4"
 						conceptId="$@PLANNED_CHEMOTHERAPY_REGIMEN_END_DATE@" allowFutureDates="true" labelText="" />
 				</td>
 				<td></td>
@@ -2744,7 +2813,7 @@ lymph node metastases.</li>
 			</tr>
 			<tr class="spaceUnder">
 				<td>Planned changes to standard regimen</td>
-				<td><obs id="chemotherapyStandardRegimenObs"
+				<td><obs id="chemotherapyStandardRegimenObs4"
 						conceptId="$@PLANNED_CHANGES_TO_STANDARD_CHEMOTHERAPY_REGIMEN@" labelText="" />
 				</td>
 				<td></td>
