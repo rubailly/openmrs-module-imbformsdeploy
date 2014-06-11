@@ -1163,12 +1163,19 @@ if(jQuery){
 
          //handle radiation section if selected
          
+         var getRadiationFacility = function(){
+        	 if(getValue('radiationFacilityObsMulago.value') !=null)
+        		 return "Mulago";
+        	 if(getValue('radiationFacilityObsOther.value') !=null)
+        		 return "Other: "+getValue('siteOfRadiationOTHERTextObs.value');
+        	};
+         
          var radiationPlanned = $j(".radiation").find(":checked").closest("td").attr("id");
          
          if(radiationPlanned == 'trigger22'){
          	$j('#radiationTreatmentPlan').show();
-     		setInnerHtml('radiationFacility', ''+$j('#radiationFacilityObs option:selected').text());
-     		setInnerHtml('radiationStartDate', ''+getValue('radiationStartDateObs.value'));
+     		setInnerHtml('radiationFacility', ''+getRadiationFacility());
+     		setInnerHtml('radiationStartDate', ''+$j.datepicker.formatDate('dd/M/yy', new Date(getValue('radiationStartDateObs.value'))));
 
      	}else{
      		$j('#radiationTreatmentPlan').hide();
@@ -3020,12 +3027,12 @@ lymph node metastases.</li>
 			<tr>
 				<th class="tableHeader" colspan="4">RADIATION THERAPY</th>
 			</tr>
-			<tr>
+			<tr class="checkboxGroup">
 				<td>Facility</td>
 				<td>						
-						<obs id="radiationFacilityObs"
+						<obs id="radiationFacilityObsMulago"
 						conceptId="$@PLANNED_RADIATION_FACILITY@" answerConceptId="ceac8227-23ec-4f51-9dab-6ed3886151aa" answerLabel="Mulago" />&#160;&#160;&#160;&#160;
-						<obs id="radiationFacilityObs"
+						<obs id="radiationFacilityObsOther"
 						conceptId="$@PLANNED_RADIATION_FACILITY@" answerConceptId="5e3e2ad0-781c-4b1c-94c7-f5c64cd8b249" answerLabel="Other:" />
 						<obs id="siteOfRadiationOTHERTextObs" conceptId="5e3e2ad0-781c-4b1c-94c7-f5c64cd8b249" />
 				</td>
