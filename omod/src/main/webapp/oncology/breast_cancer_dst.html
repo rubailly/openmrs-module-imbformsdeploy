@@ -430,177 +430,6 @@ if(jQuery){
     		   return false;
           };
        
-       var ViewModeHandler = function(){};
-       ViewModeHandler.prototype = {
-
-    		    handleHeadingSection: function(finalDiagnosis) { //handle heading section
-    		         setInnerHtml("date", getValueOfChildSpan('encounterDate'));
-    		         setInnerHtml("locationPrintArea", getValueOfChildSpan('encounterLocation'));
-    		         setInnerHtml("provider", getValueOfChildSpan('encounterProvider'));    		       
-    		         setInnerHtml("managingDCA", document.getElementById('managingDCA.managingDCA').value);
-    		         setInnerHtml("managingGP", document.getElementById('managingGP.managingGP').value);
-    		    },
-    		    
-    			 handleBreastCancerSection: function() { //handle Breast cancer section
-    				 hideOthers('breast');
-
-    		 		setInnerHtml("rightBreastMass", getValueOfChildSpan('rightBreastMassObs'));
-    		 		setInnerHtml("rightBreastMassSize1", getValueOfChildSpan('rightBreastMassSize1Obs'));
-    		 		setInnerHtml("rightBreastMassSize2", getValueOfChildSpan('rightBreastMassSize2Obs'));
-    		 	
-    		 	if(hasValue('rightBreastMassMobilityMobile'))
-    		 		setInnerHtml('rightBreastMassMobility','Mobile');
-    		 	if(hasValue('rightBreastMassMobilityFixed'))
-    		 		setInnerHtml('rightBreastMassMobility', 'Fixed');
-    		 	
-    		 	setInnerHtml('leftBreastMass', getValueOfChildSpan('leftBreastMassObs'));
-    		 	setInnerHtml('leftBreastMassSize1', getValueOfChildSpan('leftBreastMassSize1Obs'));
-    		 	setInnerHtml('leftBreastMassSize2', getValueOfChildSpan('leftBreastMassSize2Obs'));
-    		 	
-    		 	if(hasValue('leftBreastMassMobilityMobile'))
-    		 		setInnerHtml('leftBreastMassMobility','Mobile');
-    		     if(hasValue('leftBreastMassMobilityFixed'))
-    		     	setInnerHtml('leftBreastMassMobility','Fixed');
-    		 	
-    		     setInnerHtml('diagnosisSkinChanges',getValueOfChildSpan('diagnosisSkinChangesObs'));
-    		     setInnerHtml('diagnosisLymphadenopathy',getValueOfChildSpan('diagnosisLymphadenopathyObs'));
-    		     setInnerHtml('diagnosisComments', getValueOfChildSpan('diagnosisCommentsObs'));
-    		 	
-    		     setInnerHtml('stageTNMT', getValueOfChildSpan('stageTNMTObs'));
-    		     setInnerHtml('stageTNMN', getValueOfChildSpan('stageTNMNObs'));
-    		     setInnerHtml('stageTNMM', getValueOfChildSpan('stageTNMMObs'));
-    		 	
-    		 	
-    		 	if(hasValue('breastStageOS0'))
-    		 		setInnerHtml('breastStageOS', '0');
-    		 	if(hasValue('breastStageOS1'))
-    		 		setInnerHtml('breastStageOS', 'I');
-    		 	if(hasValue('breastStageOS2'))
-    		 		setInnerHtml('breastStageOS', 'II');
-    		 	if(hasValue('breastStageOS3'))
-    		 		setInnerHtml('breastStageOS', 'III');
-    		 	if(hasValue('breastStageOS4'))
-    		 		setInnerHtml('breastStageOS', 'IV');
-    		 	
-    		 	
-    		 	if(hasValue('breastStageCSEarly'))
-    		 		setInnerHtml('breastStageCS', 'Early');
-    		 	if(hasValue('breastStageCSLocallyAdvanced'))
-    		 		setInnerHtml('breastStageCS', 'Locally advanced');
-    		 	if(hasValue('breastStageCSMetastatic'))
-    		 		setInnerHtml('breastStageCS', 'Metastatic');
-    		 	
-    		 	appendStagingKeys('breastCancerStagingKeys');
-    			 },
-    				
-    				handlePathologySection: function() {//handle Pathology section	 
-    					 if(hasValue('pathologyCompletedYes')){
-    						 setInnerHtml('pathologyCompleted', 'Yes');
-    						 setInnerHtml('pathologyDate', ''+getValueOfChildSpan('dateOfPathologyObs'));
-    						 setInnerHtml('pathologySite', ''+getValueOfChildSpan('siteOfPathologyObs'));
-    						 
-    						 if(hasValue('breastStageERER+'))
-    			    		 		setInnerHtml('breastStageER', 'ER+');
-    			    		 	if(hasValue('breastStageERER-'))
-    			    		 		setInnerHtml('breastStageER', 'ER-');
-    			    		 	if(hasValue('breastStageERNotDetermined'))
-    			    		 		setInnerHtml('breastStageER', 'Not determined');
-    			    		 	
-    			    		 	if(hasValue('breastStagePRPR+'))
-    			    		 		setInnerHtml('breastStagePR', 'PR+');
-    			    		 	if(hasValue('breastStagePRPR-'))
-    			    		 		setInnerHtml('breastStagePR', 'PR-');
-    			    		 	if(hasValue('breastStagePRNotDetermined'))
-    			    		 		setInnerHtml('breastStagePR', 'Not determined');
-    			    		 	
-    			    		 	
-    			    		 	if(hasValue('breastStageHIIHC+'))
-    			    		 	    setInnerHtml('breastStageHI', 'HER2 IHC+');
-    			    		 	if(hasValue('breastStageHIIHC-'))
-    			    		 	    setInnerHtml('breastStageHI', 'HER2 IHC-');
-    			    		 	if(hasValue('breastStageHINotDetermined'))
-    			    		 	    setInnerHtml('breastStageHI', 'Not determined');
-    			    		 	
-    			    		 	if(hasValue('breastStageHFFISH+'))
-    			    		 	    setInnerHtml('breastStageHF', 'HER2 FISH+');
-    			    		 	if(hasValue('breastStageHFFISH-'))
-    			    		 	    setInnerHtml('breastStageHF', 'HER2 FISH-');
-    			    		 	if(hasValue('breastStageHFNotDetermined'))
-    			    		 	    setInnerHtml('breastStageHF', 'Not determined'); 
-    			    		 	
-    			    		 	if( hasValue('chestXRayObs')){
-    						 		alert($j('#chestXRayObs span:last').text());
-    						 		
-    						 	}
-    			    		 	
-    					 }else{
-    						 setInnerHtml('pathologyCompleted', 'No');
-    						 $j("#pathology tr:gt(1)").hide();
-    					 }
-    				 },	
-    				
-    				handleTreatmentItentSection: function() {//handle Treatment Intent section
-    				   	
-    				   	if(hasValue('treatmentCurative')){
-    				   		setInnerHtml('treatmentIntent', 'Curative');
-    				   	}
-    				       if(hasValue('treatmentPalliative')){
-    				       	setInnerHtml('treatmentIntent', 'Palliative systemic therapy');
-    				   	}
-    				       if(hasValue('treatmentPalliation')){
-    				       	setInnerHtml('treatmentIntent', 'Palliation ONLY');
-    				   	}
-    				},
-    				
-    				handleTreatmentPlanSection: function() {//handle Treatment Plan section
-    				    /*  now that we are going to play with the treatment plan sections (i.e surgery, radiation and chemotherapy) 
-    				    we need to initisalize them to hidden state and we'll be toggling them one by one according to whether a section is selected or not */
-    				    $j('#surgeryTreatmentPlan').hide();
-    				    $j('#radiationTreatmentPlan').hide();
-    				    $j('#chemotherapyTreatmentPlan_1').hide(); 
-    				    $j('#chemotherapyTreatmentPlan_2').hide(); 
-    				    $j('#chemotherapyTreatmentPlan_3').hide(); 
-    				    $j('#chemotherapyTreatmentPlan_4').hide(); 
-    				   
-    				  //handle surgery section if selected
-    				    if(hasValue('trigger21')){
-    				    	$j('#surgeryTreatmentPlan').show();
-    						setInnerHtml('surgeryFacility', ''+getValueOfChildSpan('surgeryFacilityObs'));
-    						setInnerHtml('surgeryStartDate', ''+getValueOfChildSpan('surgeryStartDateObs'));
-    						setInnerHtml('surgeryType', ''+getValueOfChildSpan('surgeryTypeObs'));
-    					}
-
-    				    //handle radiation section if selected
-    				    if(hasValue('trigger22')){
-    				    	$j('#radiationTreatmentPlan').show();
-    						setInnerHtml('radiationFacility', ''+getValueOfChildSpan('radiationFacilityObs'));
-    						setInnerHtml('radiationStartDate', ''+getValueOfChildSpan('radiationStartDateObs'));
-
-    					}
-    				    
-    				  //handle chemotherapy section if selected
-    				    if(hasValue('trigger23_1')){
-    				    	$j('#chemotherapyTreatmentPlan_1').show();
-    						setInnerHtml('chemotherapyRegimen', ''+getValueOfChildSpan('chemotherapyRegimenObs'));
-    						setInnerHtml('chemotherapyCycles', ''+getValueOfChildSpan('chemotherapyCyclesObs'));
-    						setInnerHtml('chemotherapyFirstCycle', ''+getValueOfChildSpan('chemotherapyFirstCycleObs'));
-    						setInnerHtml('chemotherapyRegimenEnd', ''+getValueOfChildSpan('chemotherapyRegimenEndObs')+' week(s)');
-    						setInnerHtml('chemotherapyStandardRegimen', ''+getValueOfChildSpan('chemotherapyStandardRegimenObs'));
-
-    					}
-    				  
-    				    if(hasValue('trigger23_2')){
-    				    	$j('#chemotherapyTreatmentPlan_2').show();
-    						setInnerHtml('chemotherapyRegimen', ''+getValueOfChildSpan('chemotherapyRegimenObs'));
-    						setInnerHtml('chemotherapyCycles', ''+getValueOfChildSpan('chemotherapyCyclesObs'));
-    						setInnerHtml('chemotherapyFirstCycle', ''+getValueOfChildSpan('chemotherapyFirstCycleObs'));
-    						setInnerHtml('chemotherapyRegimenEnd', ''+getValueOfChildSpan('chemotherapyRegimenEndObs')+' week(s)');
-    						setInnerHtml('chemotherapyStandardRegimen', ''+getValueOfChildSpan('chemotherapyStandardRegimenObs'));
-
-    					}
-    				},
-       }
-       
        
        //this class contains methods used to handle printing of this form while in the EDIT or ENTER mode 
 	var EditModeHandler = function(){};
@@ -1185,42 +1014,19 @@ if(jQuery){
     
     $j("#printLinkSpan").find("a[href]").click(function(event) {    
     	
-    	if(isEditMode()){ //the form is in the edit mode
+    	if(!isViewMode()){ //the form is in the edit mode
     		
     		printHandler = new EditModeHandler();
-    	    
-    	}else if(isViewMode()){//the form is in the view mode
-    		
-    		printHandler = new ViewModeHandler();    		
-
-    	}else{//this should be the enter mode which should be handled the same way as the edit mode
-    		//(..this means we treat the edit mode as the default mode)
-    		
-    		printHandler = new EditModeHandler();    		
+    		printHandler.handleHeadingSection("Breast Cancer");
+    		printHandler.handleBreastCancerSection();     
+            printHandler.handlePathologySection();
+            printHandler.handleTreatmentItentSection();
+            printHandler.handleTreatmentPlanSection();  
+    	}else{
+    		alert("Go back to edit mode to print this form");
+    		return false;
     	}
-    	
-          
-    	printHandler.handleHeadingSection("Breast Cancer");
-    	
-         /* now that we want to play with the printable sections, lets set them all to visible 
-         and we'll be hinding them one by one skiping the one whe have to show (see the hideOthers method) */
-    	for (var i = 0; i &lt; printableTables.length; i++) {
-		    var tableToHide=printableTables[i];
-		    	  $j('#'+tableToHide).show();
-		}
-    	
-    	printHandler.handleBreastCancerSection();    	
-    	
-         //handle pathology section    
-        printHandler.handlePathologySection();
-    	 
-    	 /* the following lines are about handling the treatment plan section  */
- 	    
- 	    //handle treatment intent section
-        printHandler.handleTreatmentItentSection();
-    	 
-    	 //handle surgery, radiation and chemotherapy sections
-        printHandler.handleTreatmentPlanSection();    	
+         
 	  });
 
  });
