@@ -272,6 +272,13 @@ td {
     table.selectedCancerStagingKeys td {
         border: 0px;
     }
+    
+    #signature {
+    border: none;
+   }
+   #signature td {
+    border: none;
+   }
 }
 
 @media screen {
@@ -1491,19 +1498,18 @@ if(jQuery){
 	<br/>
 	<table id="signature">
 	
-		<tr class="diagnosisPrintArea">
-			<td class="lables">Specialists consulted on this case</td>
-			<td colspan="2" class="values"><span >Oncologist: </span> <span >Surgeon: </span>
-			</td>
+		<tr class="diagnosisPrintArea, spaceUnder">
+			<td class="lables">Specialists consulted on this case:</td>
+			<td class="values"><span ><input type="checkbox" name="" value="">Oncologist:___________________</input></span></td>
+			<td class="values"><span ><input type="checkbox" name="" value="">Surgeon:___________________</input><input type="checkbox" name="" value="">None</input></span></td>
+		</tr>
+		<tr class="diagnosisPrintArea, spaceUnder">
+			<td colspan="3" class="lables"><b>Staging and treatment plan confirmed by:</b></td>
 		</tr>
 		<tr class="diagnosisPrintArea">
-			<td class="lables">Staging and treatment plan confirmed by:</td>
-			<td colspan="2" class="values"><span></span>
-			</td>
-		</tr>
-		<tr class="diagnosisPrintArea">
-			<td colspan="3" class="values"><span>(Internist Name)</span><span>(Signature)</span><span>(dd)(mm)(yyy)</span>
-			</td>
+			<td class="values"><span>__________________________________<br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(Internist Name)</span></td>
+			<td class="values"><span>__________________________________<br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(Signature)</span></td>
+			<td class="values"><span>________/___________/_____________<br/>&#160;&#160;&#160;&#160;(dd)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(mm)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(yyy)</span></td>
 		</tr>
 	</table>
 	
