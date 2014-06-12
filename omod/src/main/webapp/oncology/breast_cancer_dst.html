@@ -417,13 +417,11 @@ if(jQuery){
  		}
       };
       
-      var appendStagingKeys = function(elementToAppend) { 
-    	  if(typeof elementToAppend == null){
-    		  $j('.selectedCancerStagingKeys').empty();
-    		  return;
-    	  }
-    	  $j('.selectedCancerStagingKeys').empty();
-    	  $j('.'+elementToAppend).clone().appendTo('.selectedCancerStagingKeys');        	  
+      var appendStagingKeys = function() {     	  
+    	  $j('.selectedCancerStagingKeys').empty();   
+    	  for (var i = 1; i &lt; 6; i++) {
+    		  $j('#breastCancerStagingKeys'+i).clone().appendTo('.selectedCancerStagingKeys');  
+    	  }    	  
        };
        
        var getValueOfChildSpan = function(parentId) { 
@@ -586,7 +584,7 @@ if(jQuery){
  	if(getValue('breastStageCSMetastatic.value') !=null )
  		setInnerHtml('breastStageCS', 'Metastatic');
  	
- 	appendStagingKeys('breastCancerStagingKeys');
+	appendStagingKeys();
 	 },
 	 
 	 handlePathologySection: function() {//handle Pathology section	 
@@ -1514,10 +1512,12 @@ if(jQuery){
 	</table>
 	
 	<table class="selectedCancerStagingKeys">
-
-	</table>
-
+    </table>
+	
 </div>
+
+
+
 <div id="container">
 	<section>
 
@@ -2191,11 +2191,11 @@ if(jQuery){
 				<td></td>
 			</tr>
 			</obsgroup>
-			<tr class="breastCancerStagingKeys">
+			<tr id="breastCancerStagingKeys1">
 			<td colspan="6">
 			<b>*Overall Stage (AJCC 7 Edition Breast Cancer Staging):</b>
 			</td></tr>
-			<tr class="breastCancerStagingKeys">
+			<tr id="breastCancerStagingKeys2">
 				<td colspan="6"><span style="float: left;">
 						<h5>*T Staging</h5>
 						<ul>
@@ -2208,7 +2208,7 @@ if(jQuery){
 							<li>T4 Involvement of skin or chest wall</li>
 						</ul> </span> </td>
 			</tr>
-			<tr class="breastCancerStagingKeys">
+			<tr id="breastCancerStagingKeys3">
 				<td colspan="6"><span style="float: left;">
 						<h5>*Clinical N Staging</h5>
 						<ul>
@@ -2230,7 +2230,7 @@ lymph node metastases.</li>
 							<li>N3c No regional lymph node metastases</li>
 						</ul> </span> </td>
 			</tr>
-			<tr class="breastCancerStagingKeys">
+			<tr id="breastCancerStagingKeys4">
 				<td colspan="6"><span style="float: left;">
 						<h5>*M Staging</h5>
 						<ul>
@@ -2238,7 +2238,7 @@ lymph node metastases.</li>
 							<li>M1 Evidence of distant metastases (includes cervical adenopathy)</li>
 						</ul> </span> </td>
 			</tr>
-			<tr class="breastCancerStagingKeys">
+			<tr id="breastCancerStagingKeys5">
 				<td colspan="6"><span style="float: left;">
 						<h5>*Anatomic stage/prognostic groups</h5>
 						<ul>
@@ -2866,7 +2866,9 @@ lymph node metastases.</li>
 	<br />
 	<workflowState workflowId="c8dea23e-c596-40d0-a4a4-08cb61b82d3b"
 		stateId="09426655-2909-4f6f-938b-7a31b991075e" type="hidden" />
-	<submit />
+	 <submit />
+	 <br/>
+	 <encounterVoided/>
 </div>
 
  <script type="text/javascript">
@@ -2998,4 +3000,4 @@ function addChemo() {
 			}
 		}
  	 
-       </script> </ifMode> <encounterVoided/> </htmlform>
+       </script> </ifMode> </htmlform>
