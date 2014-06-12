@@ -353,29 +353,8 @@ if(jQuery){
         $j(":checkbox").click(function(){
              $j(this).change();
      });
- }
-    var printableTables = ["breast"];
-	
-	var hideStagingKeys = function(elementsToHide) {
-		$j('.'+elementsToHide).slideToggle("fast");
-     };
-	
-    
-     //add a button to toggle staging keys
-	for (var i = 0; i &lt; printableTables.length; i++) {
-	    var lastRow=printableTables[i]+"CancerStagingKeys";
-	    
-	   $j('.'+lastRow+':last').after('<button style="color: #FFF; background-color: #BB2714;" type="button" id="'+lastRow+'">Click here to view or hide staging guidelines</button>');
-	   
-	   $j('#'+lastRow).click(function () {
-	    	hideStagingKeys(this.id);
-	    	}); 
-	    
-	    hideStagingKeys(lastRow); //Initialize the staging keys to hidden
-	    
-	}
-     
-    
+ }    
+     $j('[id^="breastCancerStagingKeys"]').hide();       
      
 	var getURLParam = function(name) {
 	    var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(document.URL);
@@ -407,14 +386,6 @@ if(jQuery){
  			return ifEmptyReturn;
  		else
  			return ifNotEmpReturn;
-      };
-	
-     var hideOthers = function(elementToSkip) {
-    	 for (var i = 0; i &lt; printableTables.length; i++) {
- 		    var tableToHide=printableTables[i];
- 		    if(tableToHide != elementToSkip)
- 		       $j('#'+tableToHide).hide();     		    	
- 		}
       };
       
       var appendStagingKeys = function() {     	  
@@ -449,7 +420,6 @@ if(jQuery){
 	    },
 	
 	 handleBreastCancerSection: function() { //handle Breast cancer section
-		 hideOthers('breast');
 
  		setInnerHtml("rightBreastMass", getValue('rightBreastMassObs.value'));
  		setInnerHtml("rightBreastMassSize1", getValue('rightBreastMassSize1Obs.value'));
@@ -2247,6 +2217,9 @@ lymph node metastases.</li>
 							<li>Stage II T0 N1 M0, T1 N1 M0, T2 N0 M0, T2 N1 M0, T3 N0 M0</li>
 						</ul> </span> </td>
 			</tr>
+			<tr>
+			<td colspan="6"><button style="color: #FFF; background-color: #BB2714;" type="button" onclick="toggleStagingKeys();">Click here to view or hide staging guidelines</button></td>
+			</tr>
 		
 	</table>
 	<br />
@@ -2934,6 +2907,12 @@ lymph node metastases.</li>
 		
 	}
 </script> 
+<!-- Handle toggling staging keys -->
+<script type="text/javascript">
+function toggleStagingKeys() {
+	$j('[id^="breastCancerStagingKeys"]').slideToggle("fast");
+ }
+</script>
 <!-- Handle adding/removing chemotherapy sections --> <script type="text/javascript">
 function addChemo() {
     var trigger23_1 = $j('#trigger23_1').find("input[type$='checkbox']").is(':checked');
