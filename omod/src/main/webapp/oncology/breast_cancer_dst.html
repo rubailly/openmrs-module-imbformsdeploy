@@ -391,7 +391,12 @@ if(jQuery){
       var appendStagingKeys = function() {     	  
     	  $j('.selectedCancerStagingKeys').empty();   
     	  for (var i = 1; i &lt; 6; i++) {
-    		  $j('#breastCancerStagingKeys'+i).clone().appendTo('.selectedCancerStagingKeys');  
+    		  if($j('#breastCancerStagingKeys'+i).is(':hidden')){
+    			  $j('#breastCancerStagingKeys'+i).show();
+    			  $j('#breastCancerStagingKeys'+i).clone().appendTo('.selectedCancerStagingKeys');  
+    		  }else{
+    		      $j('#breastCancerStagingKeys'+i).clone().appendTo('.selectedCancerStagingKeys');  
+    		  }
     	  }    	  
        };
        
