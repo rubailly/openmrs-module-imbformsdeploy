@@ -2851,20 +2851,8 @@ lymph node metastases.</li>
 
  <script type="text/javascript">
 	if (jQuery) {
-		$j(document).ready(function() {			
-			    $j(".checkboxGroup").each(function(){
-			        var checkboxGroup = $j(this);
-			        var checkedBox = checkboxGroup.find(":checked");	
-			        if(checkedBox.is(':checked')){
-		        		 var which = checkedBox.closest("td").attr("id");
-		        		 if(which !=""){
-		        			 var triggerIndex = which.substring(7);
-		        	         var sectionId= "toggleble"+triggerIndex;
-		        	         $j(".togglebles").find("tbody[id$="+sectionId+"]").show();
-		        		 }
-		        	 }
-			 });
-			 
+		$j(document).ready(function() {	
+			
 			 beforeSubmit.push(function() {    	
 					var elements = [];
 					$j("td[id^='trigger']").each(function(){
@@ -2958,6 +2946,21 @@ function addChemo() {
         }
                
         hideAll();
+        
+        var elements = [];
+		$j("td[id^='trigger']").each(function(){
+		   elements.push(this.id); 
+		});
+        
+        for(var i = 0; i &lt; elements.length; i++){
+			
+			  if($j('#'+elements[i]+' :input').val() !=null){
+				    var triggerIndex = elements[i].substring(7);
+	            	var sectionId= "toggleble"+triggerIndex;
+	        	    $j(".togglebles").find("tbody[id$="+sectionId+"]").show();
+			   }
+		  }
+		
         </script> </ifMode> <ifMode mode="ENTER"> <script type="text/javascript">
   var hideAll = function(){
             $j(".togglebles").find("tbody[id^='toggleble']").hide();
